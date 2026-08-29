@@ -19,7 +19,7 @@ export default function Home() {
             </p>
             <div className="hero-actions">
               <a href="/book" className="button">Book a 15-min call</a>
-              <a href="/how-it-works" className="text-link">See how it works <span aria-hidden="true">→</span></a>
+              <a href="/app/demo" className="text-link">Try the working software <span aria-hidden="true">→</span></a>
             </div>
             <ul className="quick-proof" aria-label="Key benefits">
               <li><span aria-hidden="true">✓</span> Your number</li>

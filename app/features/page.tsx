@@ -137,7 +137,7 @@ export default function FeaturesPage() {
             <h1>A tick on a pricing page doesn’t tell you what happens after the phone rings.</h1>
             <p className="feature-hero-lede">You do not need another tech list. You need to know what the customer hears, what lands with you and what TradieRelay will never decide without you.</p>
             <div className="hero-actions">
-              <a href="#app-screens" className="button">Show me the screens</a>
+              <a href="/app/demo" className="button">Try the working software</a>
               <a href="/book" className="text-link">Talk it through with Noah <span>→</span></a>
             </div>
             <p className="prototype-note"><span>✓</span> Screens below use fake demo data. Your live wording and rules are approved by you.</p>
