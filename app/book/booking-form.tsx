@@ -2,8 +2,9 @@
 
 import { FormEvent, useState } from 'react';
 
-export function BookingForm() {
+export function BookingForm({ initialTrade = '' }: { initialTrade?: string }) {
   const [sent, setSent] = useState(false);
+  const [trade, setTrade] = useState(initialTrade);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,6 +20,7 @@ export function BookingForm() {
       `Email: ${data.get('email')}`,
       `Best time: ${data.get('time')}`,
       `Biggest phone problem: ${data.get('problem')}`,
+      `Source: ${window.location.search || document.referrer || 'Direct'}`,
     ].join('\n');
 
     const mailto = `mailto:hello@tradierelay.com.au?subject=${encodeURIComponent('TradieRelay call request')}&body=${encodeURIComponent(body)}`;
@@ -32,10 +34,10 @@ export function BookingForm() {
         <label><span>Your name</span><input name="name" autoComplete="name" required /></label>
         <label><span>Business name</span><input name="business" autoComplete="organization" required /></label>
         <label><span>Trade</span>
-          <select name="trade" required defaultValue="">
+          <select name="trade" required value={trade} onChange={(event) => setTrade(event.target.value)}>
             <option value="" disabled>Choose your trade</option>
             <option>Electrical</option><option>Plumbing</option><option>Air conditioning</option>
-            <option>Building</option><option>Landscaping</option><option>Painting</option><option>Other</option>
+            <option>Carpentry</option><option>Building</option><option>Landscaping</option><option>Painting</option><option>Other</option>
           </select>
         </label>
         <label><span>Team size</span>

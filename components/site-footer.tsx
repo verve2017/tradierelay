@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Image from 'next/image';
+import { tradePages } from '@/lib/trades';
 
 export function SiteFooter() {
   return (
@@ -32,6 +34,10 @@ export function SiteFooter() {
           <a href="/privacy">Website privacy</a>
         </div>
       </div>
+      <nav className="shell footer-trade-links" aria-label="TradieRelay trade pages">
+        <strong>TRADIERELAY FOR</strong>
+        {tradePages.map((trade) => <a href={`/trades/${trade.slug}`} key={trade.slug}>{trade.name}</a>)}
+      </nav>
       <div className="shell footer-bottom">
         <span>© 2026 TradieRelay</span>
         <span>Gold Coast, Queensland</span>

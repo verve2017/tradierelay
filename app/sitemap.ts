@@ -1,12 +1,35 @@
 import type { MetadataRoute } from 'next';
+import { tradePages } from '@/lib/trades';
+
+const origin = 'https://tradie-relay.verve-9089.chatgpt.site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const origin = 'https://tradie-relay.verve-9089.chatgpt.site';
-  const routes = ['', '/how-it-works', '/call-flow', '/features', '/what-it-handles', '/trades', '/setup', '/trust', '/pricing', '/faq', '/about', '/book', '/privacy'];
-  return routes.map((route) => ({
-    url: `${origin}${route}`,
-    lastModified: new Date('2026-08-29'),
-    changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : route === '/book' ? 0.9 : 0.7,
-  }));
+  const staticPages = [
+    '',
+    '/about',
+    '/book',
+    '/call-flow',
+    '/faq',
+    '/features',
+    '/how-it-works',
+    '/pricing',
+    '/privacy',
+    '/setup',
+    '/trades',
+    '/trust',
+    '/what-it-handles',
+  ];
+
+  return [
+    ...staticPages.map((path) => ({
+      url: `${origin}${path}`,
+      changeFrequency: path === '' ? 'weekly' as const : 'monthly' as const,
+      priority: path === '' ? 1 : path === '/trades' ? 0.9 : 0.7,
+    })),
+    ...tradePages.map((trade) => ({
+      url: `${origin}/trades/${trade.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    })),
+  ];
 }

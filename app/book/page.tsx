@@ -5,7 +5,19 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata('Book a call', 'Book a practical 15-minute call with Noah to map missed-call recovery or quote follow-up for your trade business.', '/book');
 
-export default function BookPage() {
+const tradeFromSlug: Record<string, string> = {
+  plumbers: 'Plumbing',
+  electricians: 'Electrical',
+  'air-conditioning': 'Air conditioning',
+  carpenters: 'Carpentry',
+  painters: 'Painting',
+  landscapers: 'Landscaping',
+};
+
+export default async function BookPage({ searchParams }: { searchParams: Promise<{ trade?: string }> }) {
+  const requestedTrade = (await searchParams).trade ?? '';
+  const initialTrade = tradeFromSlug[requestedTrade] ?? '';
+
   return (
     <main>
       <SiteHeader />
@@ -25,7 +37,7 @@ export default function BookPage() {
           </div>
           <div className="form-card">
             <div className="form-card-heading"><span className="status-dot" /><div><strong>Founding customer calls open</strong><small>Gold Coast trade businesses</small></div></div>
-            <BookingForm />
+            <BookingForm initialTrade={initialTrade} />
           </div>
         </div>
       </section>
