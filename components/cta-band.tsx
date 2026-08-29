@@ -1,4 +1,3 @@
-import Link from 'next/link';
 
 type CtaBandProps = {
   eyebrow?: string;
@@ -19,7 +18,7 @@ export function CtaBand({
           <h2>{title}</h2>
           <p>{body}</p>
         </div>
-        <Link href="/book" className="button">Book a 15-min call</Link>
+        <a href="/book" className="button">Book a 15-min call</a>
       </div>
     </section>
   );

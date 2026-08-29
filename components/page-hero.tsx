@@ -1,4 +1,3 @@
-import Link from 'next/link';
 
 type PageHeroProps = {
   eyebrow: string;
@@ -15,7 +14,7 @@ export function PageHero({ eyebrow, title, body, note }: PageHeroProps) {
         <h1>{title}</h1>
         <p className="page-hero-lede">{body}</p>
         <div className="hero-actions">
-          <Link href="/book" className="button">Book a 15-min call</Link>
+          <a href="/book" className="button">Book a 15-min call</a>
           {note && <span className="hero-note"><span aria-hidden="true">✓</span>{note}</span>}
         </div>
       </div>

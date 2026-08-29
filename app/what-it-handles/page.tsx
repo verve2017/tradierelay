@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -80,8 +79,8 @@ export default function WhatItHandlesPage() {
 
       <section className="section next-links-section">
         <div className="shell next-links-grid">
-          <Link href="/call-flow"><span>SEE IT IN MOTION</span><strong>Follow the full missed-call and quote sequence</strong><em>Full call flow →</em></Link>
-          <Link href="/trades"><span>MAKE IT SPECIFIC</span><strong>See example questions for your trade</strong><em>Built for trades →</em></Link>
+          <a href="/call-flow"><span>SEE IT IN MOTION</span><strong>Follow the full missed-call and quote sequence</strong><em>Full call flow →</em></a>
+          <a href="/trades"><span>MAKE IT SPECIFIC</span><strong>See example questions for your trade</strong><em>Built for trades →</em></a>
         </div>
       </section>
 

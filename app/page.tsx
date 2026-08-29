@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -19,8 +18,8 @@ export default function Home() {
               hands you the hot jobs—without changing how you work.
             </p>
             <div className="hero-actions">
-              <Link href="/book" className="button">Book a 15-min call</Link>
-              <Link href="/how-it-works" className="text-link">See how it works <span aria-hidden="true">→</span></Link>
+              <a href="/book" className="button">Book a 15-min call</a>
+              <a href="/how-it-works" className="text-link">See how it works <span aria-hidden="true">→</span></a>
             </div>
             <ul className="quick-proof" aria-label="Key benefits">
               <li><span aria-hidden="true">✓</span> Your number</li>
@@ -54,7 +53,7 @@ export default function Home() {
         <div className="shell strip-grid">
           <p className="strip-kicker">THE PHONE DOESN&apos;T CARE THAT YOUR HANDS ARE FULL.</p>
           <p className="strip-statement">If you don&apos;t answer, the next tradie might.</p>
-          <Link href="/what-it-handles" className="strip-link">See what gets handled <span aria-hidden="true">→</span></Link>
+          <a href="/what-it-handles" className="strip-link">See what gets handled <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
@@ -89,19 +88,19 @@ export default function Home() {
               <span className="service-number">01</span>
               <h3>Missed-call recovery</h3>
               <p>When you can&apos;t pick up, the customer gets a fast response and a clear next step.</p>
-              <Link href="/what-it-handles#missed-calls">What happens after the ring <span>→</span></Link>
+              <a href="/what-it-handles#missed-calls">What happens after the ring <span>→</span></a>
             </article>
             <article className="service-card featured">
               <span className="service-number">02</span>
               <h3>AI receptionist</h3>
               <p>Common questions, job details and urgency are handled using the rules you approve.</p>
-              <Link href="/what-it-handles#receptionist">See what it can answer <span>→</span></Link>
+              <a href="/what-it-handles#receptionist">See what it can answer <span>→</span></a>
             </article>
             <article className="service-card">
               <span className="service-number">03</span>
               <h3>Quote follow-up</h3>
               <p>Open quotes get a polite nudge. You hear about replies that need a real decision.</p>
-              <Link href="/what-it-handles#quotes">See the follow-up flow <span>→</span></Link>
+              <a href="/what-it-handles#quotes">See the follow-up flow <span>→</span></a>
             </article>
           </div>
         </div>
@@ -118,7 +117,7 @@ export default function Home() {
               <div><span aria-hidden="true">✓</span><p><strong>No forced overhaul.</strong> Start with missed calls and add more only when it helps.</p></div>
               <div><span aria-hidden="true">✓</span><p><strong>No pretending to be human.</strong> The service is clear about being an automated assistant.</p></div>
             </div>
-            <Link href="/about" className="text-link">Meet Noah and Jake <span aria-hidden="true">→</span></Link>
+            <a href="/about" className="text-link">Meet Noah and Jake <span aria-hidden="true">→</span></a>
           </div>
           <div className="image-frame">
             <Image src="/customer-call.jpg" alt="Australian homeowner speaking on the phone while a tradie finishes a repair" width={1536} height={1024} className="section-image" />
@@ -137,7 +136,7 @@ export default function Home() {
             <article><span>2</span><h3>Set your rules</h3><p>Choose what gets answered, what gets collected and when you step in.</p></article>
             <article><span>3</span><h3>Catch more work</h3><p>TradieRelay responds, follows up and sends the useful details to you.</p></article>
           </div>
-          <div className="centered-action"><Link href="/call-flow" className="button button-outline">See the full call flow</Link></div>
+          <div className="centered-action"><a href="/call-flow" className="button button-outline">See the full call flow</a></div>
         </div>
       </section>
 
@@ -148,10 +147,10 @@ export default function Home() {
             <h2>See the rules behind every answer.</h2>
             <p className="large-copy">Confidence comes from knowing what the assistant will ask, what it may promise and what makes it stop and hand the call back.</p>
             <div className="competence-links">
-              <Link href="/call-flow"><strong>Full conversation flow</strong><span>Every step and decision →</span></Link>
-              <Link href="/setup"><strong>Setup and testing</strong><span>How it learns your business →</span></Link>
-              <Link href="/trust"><strong>Trust and safeguards</strong><span>Boundaries, data and fallbacks →</span></Link>
-              <Link href="/faq"><strong>All common questions</strong><span>Phone, pricing and control →</span></Link>
+              <a href="/call-flow"><strong>Full conversation flow</strong><span>Every step and decision →</span></a>
+              <a href="/setup"><strong>Setup and testing</strong><span>How it learns your business →</span></a>
+              <a href="/trust"><strong>Trust and safeguards</strong><span>Boundaries, data and fallbacks →</span></a>
+              <a href="/faq"><strong>All common questions</strong><span>Phone, pricing and control →</span></a>
             </div>
           </div>
           <article className="lead-card home-lead-card">
@@ -176,7 +175,7 @@ export default function Home() {
             <p className="eyebrow light">THE JOBS ARE STILL YOURS. SO IS YOUR TIME.</p>
             <h2>Finish the day without wondering who slipped through.</h2>
             <p>Calls are handled. Quote replies are surfaced. The customers who need you are easy to see.</p>
-            <Link href="/pricing" className="button">See founding pricing</Link>
+            <a href="/pricing" className="button">See founding pricing</a>
           </div>
         </div>
       </section>
@@ -189,7 +188,7 @@ export default function Home() {
             <p>Founding plans start at <strong>$399 a month + GST</strong>. Setup, call flow and support are kept clear from day one.</p>
           </div>
           <div className="teaser-actions">
-            <Link href="/pricing" className="button">See pricing</Link>
+            <a href="/pricing" className="button">See pricing</a>
             <span>No long-term lock-in during the pilot.</span>
           </div>
         </div>

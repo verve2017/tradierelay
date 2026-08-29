@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -53,7 +52,7 @@ export default function PricingPage() {
               <p className="setup-price">{plan.setup} + GST</p>
               <p className="plan-description">{plan.description}</p>
               <ul>{plan.items.map((item) => <li key={item}><span>✓</span>{item}</li>)}</ul>
-              <Link href="/book" className={`button ${plan.featured ? '' : 'button-outline'}`}>Talk through this plan</Link>
+              <a href="/book" className={`button ${plan.featured ? '' : 'button-outline'}`}>Talk through this plan</a>
             </article>
           ))}
         </div>

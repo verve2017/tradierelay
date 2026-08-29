@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import Link from 'next/link';
 
 export function BookingForm() {
   const [sent, setSent] = useState(false);
@@ -64,7 +63,7 @@ export function BookingForm() {
       <label><span>What is the biggest phone or follow-up problem?</span><textarea name="problem" rows={4} placeholder="For example: I miss calls when I'm on jobs, then spend the evening ringing people back." required /></label>
       <label className="form-consent"><input type="checkbox" required /><span>I’m happy for Noah to use these details to contact me about TradieRelay.</span></label>
       <button type="submit" className="button form-submit">Prepare my call request</button>
-      <p className="form-note">This opens a ready-to-send email in your own email app. The website does not save the form. <Link href="/privacy">Privacy notice</Link>.</p>
+      <p className="form-note">This opens a ready-to-send email in your own email app. The website does not save the form. <a href="/privacy">Privacy notice</a>.</p>
       {sent && <p className="form-success" role="status">Your email app should now be open. Review the request and press send to complete it.</p>}
     </form>
   );

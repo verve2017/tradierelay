@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -66,7 +65,7 @@ export default function SetupPage() {
 
       <section className="section test-section">
         <div className="shell test-grid">
-          <div><p className="eyebrow light">THE PRE-LAUNCH TEST</p><h2>We test the awkward calls, not just the easy demo.</h2><Link href="/trust" className="text-link light-link">See all safeguards <span>→</span></Link></div>
+          <div><p className="eyebrow light">THE PRE-LAUNCH TEST</p><h2>We test the awkward calls, not just the easy demo.</h2><a href="/trust" className="text-link light-link">See all safeguards <span>→</span></a></div>
           <div className="test-cases">
             <span>Caller talks over the assistant</span><span>Unknown suburb</span><span>Job outside scope</span><span>Caller asks for price</span><span>Existing customer complaint</span><span>Supplier or spam call</span><span>Unclear urgency</span><span>Caller requests a person</span><span>Silence or disconnect</span><span>Question not in the rules</span><span>Wrong number</span><span>Customer opts out</span>
           </div>

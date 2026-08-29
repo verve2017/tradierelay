@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -83,7 +82,7 @@ export default function TrustPage() {
       </section>
 
       <section className="section privacy-link-section">
-        <div className="shell privacy-link-panel"><div><p className="eyebrow">CURRENT WEBSITE PRIVACY</p><h2>See what this website collects today.</h2><p>The launch website uses no advertising pixels or analytics cookies. The call-request form prepares an email in your own email app.</p></div><Link href="/privacy" className="button button-outline">Read the privacy notice</Link></div>
+        <div className="shell privacy-link-panel"><div><p className="eyebrow">CURRENT WEBSITE PRIVACY</p><h2>See what this website collects today.</h2><p>The launch website uses no advertising pixels or analytics cookies. The call-request form prepares an email in your own email app.</p></div><a href="/privacy" className="button button-outline">Read the privacy notice</a></div>
       </section>
 
       <CtaBand title="Ask the difficult questions before you start." body="Noah will walk through the rules, fallbacks and data path for your proposed pilot. If a control is unclear, it does not go live." />

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export function SiteFooter() {
   return (
@@ -12,24 +11,24 @@ export function SiteFooter() {
         </div>
         <div>
           <strong>How it works</strong>
-          <Link href="/how-it-works">How it works</Link>
-          <Link href="/call-flow">Full call flow</Link>
-          <Link href="/setup">Setup &amp; onboarding</Link>
-          <Link href="/trades">Built for trades</Link>
+          <a href="/how-it-works">How it works</a>
+          <a href="/call-flow">Full call flow</a>
+          <a href="/setup">Setup &amp; onboarding</a>
+          <a href="/trades">Built for trades</a>
         </div>
         <div>
           <strong>Confidence</strong>
-          <Link href="/what-it-handles">What it handles</Link>
-          <Link href="/trust">Trust &amp; safeguards</Link>
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/faq">Questions answered</Link>
+          <a href="/what-it-handles">What it handles</a>
+          <a href="/trust">Trust &amp; safeguards</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/faq">Questions answered</a>
         </div>
         <div>
           <strong>TradieRelay</strong>
-          <Link href="/book">Book a 15-minute call</Link>
+          <a href="/book">Book a 15-minute call</a>
           <a href="mailto:hello@tradierelay.com.au">hello@tradierelay.com.au</a>
-          <Link href="/about">About Noah &amp; Jake</Link>
-          <Link href="/privacy">Website privacy</Link>
+          <a href="/about">About Noah &amp; Jake</a>
+          <a href="/privacy">Website privacy</a>
         </div>
       </div>
       <div className="shell footer-bottom">

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -84,7 +83,7 @@ export default function CallFlowPage() {
             <p className="eyebrow">WHAT LANDS WITH YOU</p>
             <h2>One lead card. No replaying a two-minute voicemail.</h2>
             <p className="large-copy">The summary is designed to answer the first six questions you would ask yourself before calling back.</p>
-            <Link href="/setup" className="text-link">See how your fields are configured <span>→</span></Link>
+            <a href="/setup" className="text-link">See how your fields are configured <span>→</span></a>
           </div>
           <article className="lead-card large-lead-card">
             <div className="lead-card-top"><span className="lead-badge">CALLBACK REQUESTED</span><span className="lead-age">Just now</span></div>
@@ -138,8 +137,8 @@ export default function CallFlowPage() {
 
       <section className="section next-links-section">
         <div className="shell next-links-grid">
-          <Link href="/setup"><span>NOW SEE</span><strong>How we configure and test it</strong><em>Setup &amp; onboarding →</em></Link>
-          <Link href="/trust"><span>THEN CHECK</span><strong>How control, privacy and failure handling work</strong><em>Trust &amp; safeguards →</em></Link>
+          <a href="/setup"><span>NOW SEE</span><strong>How we configure and test it</strong><em>Setup &amp; onboarding →</em></a>
+          <a href="/trust"><span>THEN CHECK</span><strong>How control, privacy and failure handling work</strong><em>Trust &amp; safeguards →</em></a>
         </div>
       </section>
 

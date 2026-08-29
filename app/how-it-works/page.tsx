@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -44,7 +43,7 @@ export default function HowItWorksPage() {
             </article>
           ))}
         </div>
-        <div className="shell centered-action"><Link href="/call-flow" className="button button-outline">Open the complete 10-step call flow</Link></div>
+        <div className="shell centered-action"><a href="/call-flow" className="button button-outline">Open the complete 10-step call flow</a></div>
       </section>
 
       <section className="section soft-section">
@@ -95,8 +94,8 @@ export default function HowItWorksPage() {
 
       <section className="section next-links-section">
         <div className="shell next-links-grid">
-          <Link href="/setup"><span>READY TO GO DEEPER?</span><strong>See how the system is configured and tested</strong><em>Setup &amp; onboarding →</em></Link>
-          <Link href="/trust"><span>CHECK THE CONTROLS</span><strong>See what happens when it does not know</strong><em>Trust &amp; safeguards →</em></Link>
+          <a href="/setup"><span>READY TO GO DEEPER?</span><strong>See how the system is configured and tested</strong><em>Setup &amp; onboarding →</em></a>
+          <a href="/trust"><span>CHECK THE CONTROLS</span><strong>See what happens when it does not know</strong><em>Trust &amp; safeguards →</em></a>
         </div>
       </section>
 
