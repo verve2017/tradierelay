@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -17,6 +18,14 @@ const callSteps = [
   ['08', 'Next step', 'The caller is told what will happen next: a callback, a booking request, an urgent hand-off or a polite decline.'],
   ['09', 'Your summary', 'You receive a short structured summary with the caller, job, location, urgency, evidence and requested next action.'],
   ['10', 'Closed loop', 'The customer receives confirmation. If they reply or the status changes, the same enquiry stays together instead of creating another loose message.'],
+];
+
+const visualSteps = [
+  ['01', '☎', 'Call rings', 'Your number rings first'],
+  ['02', '✦', 'Relay answers', 'Missed, busy or after hours'],
+  ['03', '▤', 'Job captured', 'Who, what, where and urgency'],
+  ['04', '↗', 'Right next step', 'Callback, transfer or polite decline'],
+  ['05', '✓', 'Lead lands', 'Summary, photos and what to do next'],
 ];
 
 const quoteSteps = [
@@ -40,18 +49,49 @@ export default function CallFlowPage() {
 
       <section className="section flow-overview-section">
         <div className="shell detail-intro">
-          <div><p className="eyebrow">MISSED-CALL RECOVERY</p><h2>The ten-step path from ring to useful lead.</h2></div>
-          <p>This is the standard shape. The exact wording and checks change for your trade, service area and preferred jobs.</p>
+          <div><p className="eyebrow">MISSED-CALL RECOVERY</p><h2>From missed call to useful lead.</h2></div>
+          <p>Five clear stages. Your wording, service area and job rules are set up before Relay speaks to a customer.</p>
         </div>
-        <div className="shell full-flow-list">
-          {callSteps.map(([number, title, body]) => (
-            <article key={number}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
+
+        <div className="shell call-flow-visual" aria-label="TradieRelay missed-call recovery flow">
+          <div className="call-flow-track">
+            {visualSteps.map(([number, icon, title, body]) => (
+              <article className="call-flow-stage" key={number}>
+                <span className="call-flow-icon" aria-hidden="true">{icon}</span>
+                <div><small>STEP {number}</small><h3>{title}</h3><p>{body}</p></div>
+              </article>
+            ))}
+          </div>
+          <div className="call-flow-result">
+            <span>THE RESULT</span>
+            <strong>You know who called, what they need and what happens next.</strong>
+            <div><b>✓ No phone-tree loops</b><b>✓ No made-up prices</b><b>✓ No promises outside your rules</b></div>
+          </div>
         </div>
+
+        <div className="shell call-photo-grid" aria-label="The missed-call journey in real life">
+          <figure className="call-photo-main">
+            <Image src="/missed-call-plumber.jpg" alt="Plumber working under a kitchen sink while his phone rings nearby" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 65vw" />
+            <figcaption><span>01</span><div><strong>You keep working</strong><small>Relay catches the call you cannot.</small></div></figcaption>
+          </figure>
+          <figure>
+            <Image src="/customer-call.jpg" alt="Australian customer speaking on the phone while a plumber works in her kitchen" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 35vw" />
+            <figcaption><span>02</span><div><strong>The customer gets help</strong><small>A clear response, straight away.</small></div></figcaption>
+          </figure>
+          <figure>
+            <Image src="/customer-sends-job-photo.jpg" alt="Australian homeowner photographing a contained leak beneath her kitchen sink" width={1536} height={1024} sizes="(max-width: 760px) 100vw, 35vw" />
+            <figcaption><span>03</span><div><strong>You get useful evidence</strong><small>Photos and details stay with the job.</small></div></figcaption>
+          </figure>
+        </div>
+
+        <details className="shell flow-details">
+          <summary><span><small>WANT THE EXACT LOGIC?</small><strong>See every check inside the call</strong></span><b aria-hidden="true">+</b></summary>
+          <div className="flow-detail-grid">
+            {callSteps.map(([number, title, body]) => (
+              <article key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></article>
+            ))}
+          </div>
+        </details>
       </section>
 
       <section className="section conversation-section">
