@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
+import { ProductScreen } from '@/components/product-screen';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { pageMetadata } from '@/lib/metadata';
@@ -143,7 +143,7 @@ export default function FeaturesPage() {
             <p className="prototype-note"><span>✓</span> Screens below use fake demo data. Your live wording and rules are approved by you.</p>
           </div>
           <div className="feature-hero-screen" aria-label="TradieRelay qualified lead preview">
-            <Image src="/app-screens/qualified-lead.png" alt="TradieRelay prototype showing a qualified urgent fence repair lead" width={340} height={636} priority />
+            <ProductScreen type="lead" />
             <div className="screen-callout screen-callout-top"><strong>Caller sorted</strong><span>Job, suburb and urgency captured</span></div>
             <div className="screen-callout screen-callout-bottom"><strong>You choose</strong><span>Book, quote, call back or decline</span></div>
           </div>
@@ -161,20 +161,20 @@ export default function FeaturesPage() {
       <section className="section app-screens-section" id="app-screens">
         <div className="shell">
           <div className="detail-intro screen-intro">
-            <div><p className="eyebrow">SCREENSHOTS FROM THE WORKING PROTOTYPE</p><h2>See what “handled” actually looks like.</h2></div>
-            <p>The customer gets a quick response. You get a short, useful decision screen. The prototype uses fake names and jobs so you can inspect the experience without pretending these are live customer results.</p>
+            <div><p className="eyebrow">LIVE PRODUCT PREVIEWS · FAKE DATA</p><h2>See what “handled” actually looks like.</h2></div>
+            <p>These previews are rendered from the working interface, so every word stays sharp. The customer gets a quick response and you get a short decision screen—using fake names and jobs, never invented customer results.</p>
           </div>
           <div className="app-screen-grid">
             <article>
-              <div className="app-screen-frame"><Image src="/app-screens/hot-lead-alert.png" alt="TradieRelay prototype SMS showing a hot missed-call lead alert" width={340} height={636} /></div>
+              <div className="app-screen-frame"><ProductScreen type="alert" /></div>
               <div className="app-screen-copy"><span>01 · HOT LEAD ALERT</span><h3>No more “missed call” with no clue.</h3><p>The alert tells you who called, the job, suburb, urgency, preferred timing and whether evidence is attached.</p><a href="#hot-lead-alerts">Exactly what this feature does →</a></div>
             </article>
             <article>
-              <div className="app-screen-frame"><Image src="/app-screens/qualified-lead.png" alt="TradieRelay prototype showing a qualified lead with the caller’s description and preferred times" width={340} height={636} /></div>
+              <div className="app-screen-frame"><ProductScreen type="lead" /></div>
               <div className="app-screen-copy"><span>02 · QUALIFIED JOB</span><h3>Make the call-back decision quickly.</h3><p>See the caller’s own words, job type, location, urgency, preferred times and recording before deciding the next step.</p><a href="#lead-qualification">Exactly what this feature does →</a></div>
             </article>
             <article>
-              <div className="app-screen-frame"><Image src="/app-screens/job-pipeline.png" alt="TradieRelay prototype pipeline grouping jobs that need action, are waiting on a customer or are booked" width={340} height={636} /></div>
+              <div className="app-screen-frame"><ProductScreen type="pipeline" /></div>
               <div className="app-screen-copy"><span>03 · ACTION PIPELINE</span><h3>See what needs you—and ignore the rest.</h3><p>Jobs sit under Needs you, Waiting on customer or Booked. Quote status stays with the job instead of disappearing into texts.</p><a href="#quote-follow-up-flow">Exactly what this feature does →</a></div>
             </article>
           </div>
