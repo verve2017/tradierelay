@@ -688,7 +688,7 @@ h3 { margin: 0; font-size: 23px; line-height: 1.18; letter-spacing: -.025em; }
 .app-screen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .app-screen-grid > article { overflow: hidden; border: 1px solid #d8d9d6; border-radius: 18px; background: white; box-shadow: 0 18px 44px rgba(17,24,32,.08); }
 .app-screen-frame { min-height: 510px; display: grid; place-items: end center; overflow: hidden; padding: 34px 25px 0; background: linear-gradient(145deg, #1a252e, #2b3943); }
-.app-screen-frame img { display: block; width: 260px; height: auto; filter: drop-shadow(0 18px 24px rgba(0,0,0,.32)); }
+.app-screen-frame img { display: block; width: 260px; height: auto; border-radius: 11.5% / 6.2%; clip-path: inset(0 round 11.5% / 6.2%); filter: drop-shadow(0 18px 24px rgba(0,0,0,.32)); }
 .app-screen-copy { padding: 30px 30px 33px; }
 .app-screen-copy > span { color: var(--orange-dark); font: 800 10px/1.3 var(--font-geist-mono), monospace; letter-spacing: .08em; }
 .app-screen-copy h3 { margin-top: 17px; font-size: 24px; }
