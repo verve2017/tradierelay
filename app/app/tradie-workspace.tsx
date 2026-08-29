@@ -17,10 +17,19 @@ type WorkspaceJob = {
 type WorkspaceData = { businessName: string; ownerName: string; gstRegistered: boolean; jobs: WorkspaceJob[] };
 type Section = 'jobs' | 'quotes' | 'customers' | 'products' | 'rules';
 
+const demoSarahPhoto: JobPhoto = {
+  id: 'demo-photo-sarah',
+  contentType: 'image/jpeg',
+  sizeBytes: 134603,
+  caption: 'Burst flexi hose under kitchen sink',
+  createdAt: '2026-08-29T08:00:00.000Z',
+  url: '/customer-sends-job-photo.jpg',
+};
+
 const demoData: WorkspaceData = {
   businessName: "Bob's Handyman", ownerName: 'Bob', gstRegistered: true,
   jobs: [
-    { id: 'job-sarah', customerId: 'customer-sarah', customer: 'Sarah Mitchell', phone: '0412 345 678', suburb: 'Burleigh Waters', title: 'Burst flexi hose', description: 'Burst flexi hose under the kitchen sink. Water is leaking. The caller has shut off the mains.', summary: 'Noticed leaking this morning. Access is clear under the sink. Needs help today if possible.', age: '2 min ago', urgency: 'urgent', status: 'New', preferredWindows: ['This arvo', 'Friday morning'], quote: null, photos: [] },
+    { id: 'job-sarah', customerId: 'customer-sarah', customer: 'Sarah Mitchell', phone: '0412 345 678', suburb: 'Burleigh Waters', title: 'Burst flexi hose', description: 'Burst flexi hose under the kitchen sink. Water is leaking. The caller has shut off the mains.', summary: 'Noticed leaking this morning. Access is clear under the sink. Needs help today if possible.', age: '2 min ago', urgency: 'urgent', status: 'New', preferredWindows: ['This arvo', 'Friday morning'], quote: null, photos: [demoSarahPhoto] },
     { id: 'job-emma', customerId: 'customer-emma', customer: 'Emma Taylor', phone: '0421 620 118', suburb: 'Palm Beach', title: 'Tap leaking', description: 'Kitchen tap has been leaking for two days. No flooding and the isolation valve still works.', summary: 'Routine repair. Customer is available Tuesday or Wednesday afternoon.', age: '28 min ago', urgency: 'standard', status: 'Callback due', preferredWindows: ['Tuesday arvo', 'Wednesday arvo'], quote: null, photos: [] },
     { id: 'job-james', customerId: 'customer-james', customer: 'James Ryan', phone: '0403 555 014', suburb: 'Miami', title: 'Toilet not flushing', description: 'Upstairs toilet will not flush. The other toilet is working.', summary: 'Customer sent a photo and wants an estimate before booking.', age: '1 hr ago', urgency: 'standard', status: 'Draft quote', preferredWindows: ['Thursday morning'], photos: [], quote: { id: 'demo-quote-james', status: 'draft', note: '', validUntil: '12 September 2026', totalCents: 25500, lines: [
       { id: 'demo-line-1', description: 'Call-out & assessment', quantityMilli: 1000, unit: 'job', unitRateExGstCents: 10000 },
@@ -86,7 +95,7 @@ export function TradieWorkspace({ accessToken = null, demo = false }: { accessTo
       try {
         const photos = await listDemoPhotos('job-sarah');
         activeUrls.forEach((url) => URL.revokeObjectURL(url)); activeUrls = photos.map((photo) => photo.url);
-        setWorkspace((current) => ({ ...current, jobs: current.jobs.map((job) => job.id === 'job-sarah' ? { ...job, photos: photos.map(demoPhotoToJobPhoto) } : job) }));
+        setWorkspace((current) => ({ ...current, jobs: current.jobs.map((job) => job.id === 'job-sarah' ? { ...job, photos: photos.length ? photos.map(demoPhotoToJobPhoto) : [demoSarahPhoto] } : job) }));
       } catch { /* Demo storage can be unavailable in restricted browser modes. */ }
     }
     void refreshPhotos();

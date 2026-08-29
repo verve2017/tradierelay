@@ -94,6 +94,31 @@ export default function CallFlowPage() {
         </details>
       </section>
 
+      <section className="section photo-handoff-section">
+        <div className="shell photo-handoff-grid">
+          <div className="photo-handoff-copy">
+            <p className="eyebrow">FROM CALL TO PHOTO</p>
+            <h2>The customer gets a text. You get the photos on the job.</h2>
+            <p className="large-copy">No need to explain an app or chase attachments. Relay sends a secure link after the call and keeps every photo with the right customer and job.</p>
+            <div className="photo-sms-preview">
+              <span>TEXT TO CUSTOMER</span>
+              <p><strong>Coastwide Plumbing:</strong> add photos for the burst flexi hose here: <u>Open secure link</u></p>
+              <small>The private upload link expires after 48 hours.</small>
+            </div>
+            <div className="photo-handoff-steps">
+              <article><span aria-hidden="true">1</span><div><strong>SMS arrives</strong><p>The customer is told exactly what the photos are for.</p></div></article>
+              <article><span aria-hidden="true">2</span><div><strong>They tap and upload</strong><p>Take or choose up to six photos. No account needed.</p></div></article>
+              <article><span aria-hidden="true">3</span><div><strong>Photos land on the job</strong><p>The job card shows a photo count; the job opens to image tiles.</p></div></article>
+            </div>
+          </div>
+          <figure className="dashboard-photo-preview">
+            <div className="dashboard-window-bar"><i /><i /><i /><span>TRADIE WORKSPACE</span></div>
+            <Image src="/app-screens/customer-photo-tile.png" alt="TradieRelay tradie dashboard showing Sarah Mitchell's burst flexi hose photo attached to the job" width={640} height={500} sizes="(max-width: 900px) 100vw, 48vw" />
+            <figcaption><span>WORKING DEMO</span><strong>The photo appears inside Sarah&apos;s job under Customer photos.</strong></figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section className="section conversation-section">
         <div className="shell conversation-grid">
           <div className="conversation-copy">
