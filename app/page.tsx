@@ -137,7 +137,35 @@ export default function Home() {
             <article><span>2</span><h3>Set your rules</h3><p>Choose what gets answered, what gets collected and when you step in.</p></article>
             <article><span>3</span><h3>Catch more work</h3><p>TradieRelay responds, follows up and sends the useful details to you.</p></article>
           </div>
-          <div className="centered-action"><Link href="/how-it-works" className="button button-outline">See the full call flow</Link></div>
+          <div className="centered-action"><Link href="/call-flow" className="button button-outline">See the full call flow</Link></div>
+        </div>
+      </section>
+
+      <section className="section competence-section">
+        <div className="shell competence-grid">
+          <div className="competence-copy">
+            <p className="eyebrow">NOT A BLACK BOX</p>
+            <h2>See the rules behind every answer.</h2>
+            <p className="large-copy">Confidence comes from knowing what the assistant will ask, what it may promise and what makes it stop and hand the call back.</p>
+            <div className="competence-links">
+              <Link href="/call-flow"><strong>Full conversation flow</strong><span>Every step and decision →</span></Link>
+              <Link href="/setup"><strong>Setup and testing</strong><span>How it learns your business →</span></Link>
+              <Link href="/trust"><strong>Trust and safeguards</strong><span>Boundaries, data and fallbacks →</span></Link>
+              <Link href="/faq"><strong>All common questions</strong><span>Phone, pricing and control →</span></Link>
+            </div>
+          </div>
+          <article className="lead-card home-lead-card">
+            <div className="lead-card-top"><span className="lead-badge">SAMPLE LEAD</span><span className="lead-age">Just now</span></div>
+            <h3>Power out in half the house</h3>
+            <div className="lead-meta-grid">
+              <div><small>CALLER</small><strong>Michael R.</strong></div>
+              <div><small>SUBURB</small><strong>Robina</strong></div>
+              <div><small>JOB TYPE</small><strong>Electrical fault</strong></div>
+              <div><small>URGENCY</small><strong className="amber-text">Review promptly</strong></div>
+            </div>
+            <div className="lead-note"><small>CUSTOMER TOLD</small><p>No attendance time or diagnosis promised. Electrician will call to confirm next steps.</p></div>
+            <div className="lead-actions"><span>Call customer</span><span>Open detail</span></div>
+          </article>
         </div>
       </section>
 

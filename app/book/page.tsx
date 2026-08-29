@@ -1,12 +1,9 @@
-import type { Metadata } from 'next';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { BookingForm } from './booking-form';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Book a call',
-  description: 'Book a practical 15-minute call with Noah to map missed-call recovery or quote follow-up for your trade business.',
-};
+export const metadata = pageMetadata('Book a call', 'Book a practical 15-minute call with Noah to map missed-call recovery or quote follow-up for your trade business.', '/book');
 
 export default function BookPage() {
   return (
@@ -24,6 +21,7 @@ export default function BookPage() {
               <article><span>3</span><div><strong>A practical next step</strong><p>A pilot recommendation—or a clear no if it is not useful.</p></div></article>
             </div>
             <div className="book-trust"><span aria-hidden="true">✓</span><p><strong>Gold Coast founding pilot</strong>No long-term lock-in. No invented promises.</p></div>
+            <div className="bring-list"><strong>USEFUL TO HAVE</strong><span>One recent missed-call example</span><span>Rough weekly call volume</span><span>Your current phone provider</span><span>One quote that went quiet</span></div>
           </div>
           <div className="form-card">
             <div className="form-card-heading"><span className="status-dot" /><div><strong>Founding customer calls open</strong><small>Gold Coast trade businesses</small></div></div>

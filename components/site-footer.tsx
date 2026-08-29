@@ -11,16 +11,25 @@ export function SiteFooter() {
           <p className="local-note">Built on the Gold Coast.</p>
         </div>
         <div>
-          <strong>Explore</strong>
+          <strong>How it works</strong>
           <Link href="/how-it-works">How it works</Link>
-          <Link href="/what-it-handles">What it handles</Link>
-          <Link href="/pricing">Pricing</Link>
+          <Link href="/call-flow">Full call flow</Link>
+          <Link href="/setup">Setup &amp; onboarding</Link>
+          <Link href="/trades">Built for trades</Link>
         </div>
         <div>
-          <strong>Talk to us</strong>
+          <strong>Confidence</strong>
+          <Link href="/what-it-handles">What it handles</Link>
+          <Link href="/trust">Trust &amp; safeguards</Link>
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/faq">Questions answered</Link>
+        </div>
+        <div>
+          <strong>TradieRelay</strong>
           <Link href="/book">Book a 15-minute call</Link>
           <a href="mailto:hello@tradierelay.com.au">hello@tradierelay.com.au</a>
           <Link href="/about">About Noah &amp; Jake</Link>
+          <Link href="/privacy">Website privacy</Link>
         </div>
       </div>
       <div className="shell footer-bottom">

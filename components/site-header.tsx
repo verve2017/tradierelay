@@ -3,9 +3,10 @@ import Link from 'next/link';
 
 const links = [
   { href: '/how-it-works', label: 'How it works' },
-  { href: '/what-it-handles', label: 'What it handles' },
+  { href: '/call-flow', label: 'Full call flow' },
+  { href: '/what-it-handles', label: 'Solutions' },
+  { href: '/trust', label: 'Trust' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/about', label: 'About' },
 ];
 
 export function SiteHeader() {

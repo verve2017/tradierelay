@@ -1,13 +1,11 @@
-import type { Metadata } from 'next';
+import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'What it handles',
-  description: 'Missed-call recovery, AI reception, lead details, booking hand-off and automated quote follow-up for trade businesses.',
-};
+export const metadata = pageMetadata('What it handles', 'Missed-call recovery, AI reception, lead details, booking hand-off and automated quote follow-up for trade businesses.', '/what-it-handles');
 
 export default function WhatItHandlesPage() {
   return (
@@ -41,6 +39,26 @@ export default function WhatItHandlesPage() {
         </div>
       </section>
 
+      <section className="section capability-matrix-section">
+        <div className="shell">
+          <div className="detail-intro"><div><p className="eyebrow">CAPABILITY MATRIX</p><h2>What can be configured in each workflow.</h2></div><p>Availability depends on the phone, messaging, calendar and job tools agreed for the pilot. The setup scope names what is live before anyone pays.</p></div>
+          <div className="capability-table" role="table" aria-label="TradieRelay capability comparison">
+            <div className="capability-row capability-head" role="row"><strong role="columnheader">Capability</strong><strong role="columnheader">Missed calls</strong><strong role="columnheader">Reception</strong><strong role="columnheader">Quote follow-up</strong></div>
+            {[
+              ['Automated customer response', 'Yes', 'Yes', 'Yes'],
+              ['Name, suburb and job details', 'Yes', 'Yes', 'From quote record'],
+              ['Urgency and suitability rules', 'Yes', 'Yes', 'Not required'],
+              ['Common business questions', 'Limited', 'Yes', 'Quote questions routed'],
+              ['Photo or document request', 'Where supported', 'Where supported', 'Where supported'],
+              ['Live transfer or callback', 'Yes', 'Yes', 'Callback request'],
+              ['Stop and opt-out rules', 'Yes', 'Yes', 'Yes'],
+              ['Structured owner summary', 'Yes', 'Yes', 'Yes'],
+              ['Conversation review', 'Yes', 'Yes', 'Yes'],
+            ].map((row) => <div className="capability-row" role="row" key={row[0]}>{row.map((cell, index) => index === 0 ? <strong role="cell" key={cell}>{cell}</strong> : <span role="cell" key={`${row[0]}-${index}`}>{cell}</span>)}</div>)}
+          </div>
+        </div>
+      </section>
+
       <section className="section soft-section">
         <div className="shell detail-intro">
           <div><p className="eyebrow">WHAT IT DOES NOT DO</p><h2>It does not pretend to be the licensed tradie.</h2></div>
@@ -57,6 +75,13 @@ export default function WhatItHandlesPage() {
             <details><summary>Can I choose which calls it handles?</summary><p>Yes. After-hours only, missed calls only, overflow, or a broader reception role—the rules are agreed with you.</p></details>
             <details><summary>What if it does not know the answer?</summary><p>It says so, captures the question and routes it to the right person. It does not make up a trade answer.</p></details>
           </div>
+        </div>
+      </section>
+
+      <section className="section next-links-section">
+        <div className="shell next-links-grid">
+          <Link href="/call-flow"><span>SEE IT IN MOTION</span><strong>Follow the full missed-call and quote sequence</strong><em>Full call flow →</em></Link>
+          <Link href="/trades"><span>MAKE IT SPECIFIC</span><strong>See example questions for your trade</strong><em>Built for trades →</em></Link>
         </div>
       </section>
 

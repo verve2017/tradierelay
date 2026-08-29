@@ -1,14 +1,11 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'Meet the Gold Coast team behind TradieRelay and see the practical principles guiding the founding-customer pilot.',
-};
+export const metadata = pageMetadata('About', 'Meet the Gold Coast team behind TradieRelay and see the practical principles guiding the founding-customer pilot.', '/about');
 
 export default function AboutPage() {
   return (
@@ -54,6 +51,18 @@ export default function AboutPage() {
               <h3>Jake</h3>
               <p>Jake builds the workflows, tests the edge cases and improves the system as the pilot reveals what customers actually need.</p>
             </article>
+          </div>
+          <div className="founder-note"><strong>Young founders. Visible accountability.</strong><p>Noah and Jake both hold diplomas in business studies. Noah’s strength is sales and understanding the customer’s working problem. Jake’s is fast software building and testing. The pilot earns trust through clear rules, controlled scope and direct founder support—not borrowed logos or made-up experience.</p></div>
+        </div>
+      </section>
+
+      <section className="section founder-model-section">
+        <div className="shell founder-model-grid">
+          <div><p className="eyebrow">THE FOUNDING CUSTOMER MODEL</p><h2>You should know who owns the result.</h2></div>
+          <div>
+            <article><span>BEFORE</span><p><strong>Noah owns the scope.</strong> He documents the missed-call or quote problem and the result the pilot must prove.</p></article>
+            <article><span>DURING</span><p><strong>Jake owns the behaviour.</strong> He builds the approved rules, tests edge cases and fixes what does not behave correctly.</p></article>
+            <article><span>AFTER</span><p><strong>Both review the evidence.</strong> Useful leads, customer friction, time saved and wrong answers decide whether the pilot expands.</p></article>
           </div>
         </div>
       </section>

@@ -1,14 +1,12 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'How it works',
-  description: 'See how TradieRelay handles a missed call, collects useful job details and hands the right enquiries back to you.',
-};
+export const metadata = pageMetadata('How it works', 'See how TradieRelay handles a missed call, collects useful job details and hands the right enquiries back to you.', '/how-it-works');
 
 const flow = [
   { time: '00:00', title: 'Your phone rings', body: 'You are on a ladder, under a sink or talking to the customer in front of you.' },
@@ -46,6 +44,7 @@ export default function HowItWorksPage() {
             </article>
           ))}
         </div>
+        <div className="shell centered-action"><Link href="/call-flow" className="button button-outline">Open the complete 10-step call flow</Link></div>
       </section>
 
       <section className="section soft-section">
@@ -78,6 +77,26 @@ export default function HowItWorksPage() {
             <article><span className="mini-label">RELAY HANDLES</span><h3>Repeatable phone work</h3><p>Basic questions, detail collection, polite follow-up and routing.</p></article>
             <article><span className="mini-label">YOU HANDLE</span><h3>Trade decisions</h3><p>Pricing, diagnosis, exceptions, difficult customers and final commitments.</p></article>
           </div>
+        </div>
+      </section>
+
+      <section className="section system-section">
+        <div className="shell">
+          <div className="section-heading centered"><p className="eyebrow">THE WORKING PARTS</p><h2>Five layers make the relay useful.</h2><p>Each layer is configured, tested and reviewable. The system is more than a voice on the phone.</p></div>
+          <div className="system-grid">
+            <article><span>01</span><h3>Routing</h3><p>Defines when TradieRelay answers and where a live transfer or callback goes.</p></article>
+            <article><span>02</span><h3>Approved knowledge</h3><p>Your services, areas, hours, job rules, common questions and clear exclusions.</p></article>
+            <article><span>03</span><h3>Conversation logic</h3><p>The required questions, branches, stop conditions and human hand-off triggers.</p></article>
+            <article><span>04</span><h3>Lead delivery</h3><p>A structured summary sent to the person who can actually decide the next step.</p></article>
+            <article><span>05</span><h3>Review loop</h3><p>Real conversations reveal missing rules, confusing wording and the next useful improvement.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section next-links-section">
+        <div className="shell next-links-grid">
+          <Link href="/setup"><span>READY TO GO DEEPER?</span><strong>See how the system is configured and tested</strong><em>Setup &amp; onboarding →</em></Link>
+          <Link href="/trust"><span>CHECK THE CONTROLS</span><strong>See what happens when it does not know</strong><em>Trust &amp; safeguards →</em></Link>
         </div>
       </section>
 

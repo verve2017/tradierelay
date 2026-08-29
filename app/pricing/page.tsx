@@ -1,14 +1,11 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'Clear founding-customer pricing for TradieRelay missed-call recovery, AI receptionist and quote follow-up plans.',
-};
+export const metadata = pageMetadata('Pricing', 'Clear founding-customer pricing for TradieRelay missed-call recovery, AI receptionist and quote follow-up plans.', '/pricing');
 
 const plans = [
   {
@@ -64,6 +61,22 @@ export default function PricingPage() {
           <strong>About usage</strong>
           <p>Each plan includes an agreed allowance based on your normal call volume. If usage changes, we tell you before the bill does. Exact inclusions are confirmed in the setup call.</p>
         </div>
+        <div className="shell plan-comparison">
+          <div className="section-heading"><p className="eyebrow">PLAN DETAIL</p><h2>Compare what is actually configured.</h2></div>
+          <div className="comparison-table" role="table" aria-label="TradieRelay plan comparison">
+            <div className="comparison-row comparison-head" role="row"><strong role="columnheader">Included</strong><strong role="columnheader">Catch</strong><strong role="columnheader">Relay</strong><strong role="columnheader">Crew</strong></div>
+            {[
+              ['Primary workflow', 'Missed calls', 'Reception + quotes', 'Multi-route reception'],
+              ['Routing modes', '1', 'Up to 2', 'Up to 4'],
+              ['People or teams routed', '1', 'Up to 3', 'Up to 8'],
+              ['Quote follow-up', '—', '1 sequence', 'Up to 3 sequences'],
+              ['Business-rule review', 'Monthly', 'Monthly', 'Fortnightly'],
+              ['Lead summary format', 'Standard', 'Custom', 'Custom by route'],
+              ['Pre-launch test pack', 'Core', 'Expanded', 'Expanded + team routes'],
+              ['Pilot review', '14 days', '14 days', '14 days'],
+            ].map((row) => <div className="comparison-row" role="row" key={row[0]}>{row.map((cell, index) => index === 0 ? <strong role="cell" key={cell}>{cell}</strong> : <span role="cell" key={`${row[0]}-${index}`}>{cell}</span>)}</div>)}
+          </div>
+        </div>
       </section>
 
       <section className="section soft-section">
@@ -87,6 +100,13 @@ export default function PricingPage() {
             <details><summary>Is there a contract?</summary><p>The founding pilot has no long-term lock-in. Final service terms are reviewed with you before you start.</p></details>
             <details><summary>Can I try missed calls first?</summary><p>Yes. That is the recommended starting point for most sole traders.</p></details>
           </div>
+        </div>
+      </section>
+
+      <section className="section price-confidence-section">
+        <div className="shell price-confidence-grid">
+          <div><p className="eyebrow light">BEFORE YOU PAY</p><h2>The scope is written down.</h2><p>Noah confirms the routing mode, live features, usage allowance, setup work, support rhythm and anything your current tools cannot support.</p></div>
+          <div className="price-confidence-list"><span>One agreed pilot problem</span><span>Named workflow owner</span><span>Approved test checklist</span><span>Documented fallback</span><span>14-day keep/change review</span><span>No silent overage</span></div>
         </div>
       </section>
 
