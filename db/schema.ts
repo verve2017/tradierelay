@@ -264,3 +264,19 @@ export const events = sqliteTable('events', {
   index('idx_events_tenant_created').on(table.tenantId, table.createdAt),
   index('idx_events_resource').on(table.resourceType, table.resourceId),
 ]);
+
+export const operatorEvents = sqliteTable('operator_events', {
+  id: id(),
+  actorId: text('actor_id').notNull(),
+  type: text('type').notNull(),
+  payload: text('payload', { mode: 'json' }).$type<Record<string, unknown>>().notNull(),
+  createdAt: createdAt(),
+}, (table) => [index('idx_operator_events_type_created').on(table.type, table.createdAt)]);
+
+export const operatorPlanProgress = sqliteTable('operator_plan_progress', {
+  itemId: text('item_id').primaryKey(),
+  completed: integer('completed', { mode: 'boolean' }).notNull().default(false),
+  completedAt: text('completed_at'),
+  updatedBy: text('updated_by').notNull(),
+  updatedAt: updatedAt(),
+});

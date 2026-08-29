@@ -8,6 +8,13 @@
       "when": 1787975197861,
       "tag": "0000_brown_bloodstrike",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1787985056338,
+      "tag": "0001_slippery_gargoyle",
+      "breakpoints": true
     }
   ]
 }

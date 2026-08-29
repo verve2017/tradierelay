@@ -1,9 +1,10 @@
 import { and, eq } from 'drizzle-orm';
 import { getD1, getDb, getRuntimeEnv } from '@/db';
-import { customers, tenantUsers, tenants, webhookEvents } from '@/db/schema';
+import { customers, events, tenantSettings, tenantUsers, tenants, webhookEvents } from '@/db/schema';
 import { extractJobRecord } from '@/lib/providers/ai';
 import { sendSms } from '@/lib/providers/sms';
 import { createId, createOpaqueToken, hashOpaqueToken } from './ids';
+import { resolveNotificationRoutes } from './routing';
 
 export type CompletedCallInput = {
   provider: string;
@@ -41,6 +42,7 @@ export async function ingestCompletedCall(input: CompletedCallInput, appOrigin: 
   const callId = createId('cal');
   const jobId = createId('job');
   const owner = await getDb().query.tenantUsers.findFirst({ where: and(eq(tenantUsers.tenantId, tenant.id), eq(tenantUsers.role, 'owner')) });
+  const settings = await getDb().query.tenantSettings.findFirst({ where: eq(tenantSettings.tenantId, tenant.id) });
   const tradieToken = createOpaqueToken();
   const customerToken = phone === 'unknown' ? null : createOpaqueToken();
   const pepper = getRuntimeEnv().TOKEN_PEPPER ?? '';
@@ -79,10 +81,25 @@ export async function ingestCompletedCall(input: CompletedCallInput, appOrigin: 
   const base = appOrigin.replace(/\/$/u, '');
   if (owner) {
     const prefix = extraction.urgency === 'emergency' || extraction.urgency === 'urgent' ? 'URGENT — ' : '';
-    await sendSms({ tenantId: tenant.id, to: owner.phoneE164, from: tenant.smsNumber, body: `${prefix}${extraction.caller_name ?? phone}: ${extraction.title}, ${extraction.suburb ?? 'suburb not confirmed'}. ${jobSummary.slice(0, 160)} ${base}/app?token=${encodeURIComponent(tradieToken)}`, jobId });
+    const alertBody = `${prefix}${extraction.caller_name ?? phone}: ${extraction.title}, ${extraction.suburb ?? 'suburb not confirmed'}. ${jobSummary.slice(0, 160)} ${base}/app?token=${encodeURIComponent(tradieToken)}`;
+    const primaryRoute = resolveNotificationRoutes({ ownerPhone: owner.phoneE164, notificationPhone: settings?.notificationPhone, callRules: settings?.callRules, urgency: extraction.urgency })[0];
+    let primaryFailed = false;
+    if (primaryRoute) {
+      try { await sendSms({ tenantId: tenant.id, to: primaryRoute.phone, from: tenant.smsNumber, body: alertBody, jobId }); }
+      catch { primaryFailed = true; }
+    }
+    const routes = resolveNotificationRoutes({ ownerPhone: owner.phoneE164, notificationPhone: settings?.notificationPhone, callRules: settings?.callRules, urgency: extraction.urgency, primaryDeliveryFailed: primaryFailed }).slice(1);
+    for (const route of routes) {
+      try { await sendSms({ tenantId: tenant.id, to: route.phone, from: tenant.smsNumber, body: `${route.reason === 'delivery_fallback' ? 'PRIMARY ALERT FAILED — ' : ''}${alertBody}`, jobId }); }
+      catch { /* Delivery failures remain visible in the message log and operator console. */ }
+    }
+    if (primaryFailed) {
+      await getDb().insert(events).values({ id: createId('evt'), tenantId: tenant.id, actorType: 'system', actorId: null, type: 'notification.primary_failed', resourceType: 'job', resourceId: jobId, payload: { fallbackAttempted: routes.length > 0 }, createdAt: new Date().toISOString() });
+    }
   }
   if (customerToken && phone !== 'unknown') {
-    await sendSms({ tenantId: tenant.id, to: phone, from: tenant.smsNumber, body: `${tenant.businessName}: add photos for ${extraction.title} here: ${base}/customer/photos?token=${encodeURIComponent(customerToken)} Reply STOP to opt out.`, jobId });
+    try { await sendSms({ tenantId: tenant.id, to: phone, from: tenant.smsNumber, body: `${tenant.businessName}: add photos for ${extraction.title} here: ${base}/customer/photos?token=${encodeURIComponent(customerToken)} Reply STOP to opt out.`, jobId }); }
+    catch { await getDb().insert(events).values({ id: createId('evt'), tenantId: tenant.id, actorType: 'system', actorId: null, type: 'customer.photo_link_delivery_failed', resourceType: 'job', resourceId: jobId, payload: {}, createdAt: new Date().toISOString() }); }
   }
   return { duplicate: false, tenantId: tenant.id, callId, jobId, confidence: confidenceAverage, needsHumanReview: extraction.needs_human_review };
 }

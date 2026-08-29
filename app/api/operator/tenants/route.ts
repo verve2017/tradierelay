@@ -2,6 +2,7 @@ import { getD1, getRuntimeEnv } from '@/db';
 import { requireOperatorAccess } from '@/lib/server/access';
 import { json, problem, readJsonObject } from '@/lib/server/http';
 import { createId, createOpaqueToken, hashOpaqueToken } from '@/lib/server/ids';
+import { normaliseAustralianMobile } from '@/lib/server/phone';
 
 export const dynamic = 'force-dynamic';
 
@@ -37,11 +38,11 @@ export async function POST(request: Request) {
 
   const businessName = textValue(body.businessName);
   const ownerName = textValue(body.ownerName);
-  const ownerPhone = textValue(body.ownerPhone, 30);
+  const ownerPhone = normaliseAustralianMobile(body.ownerPhone);
   const trade = textValue(body.trade, 80);
   const suburbs = stringArray(body.serviceSuburbs);
   if (!businessName || !ownerName || !ownerPhone || !trade || suburbs.length === 0) {
-    return problem(400, 'missing_required_details', 'Business, owner, mobile, trade and service suburbs are required.');
+    return problem(400, 'missing_required_details', 'Business, owner, a valid Australian mobile, trade and service suburbs are required.');
   }
 
   const tenantId = createId('ten');

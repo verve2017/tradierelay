@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { hmacSha256Hex, validateHmacSha256 } from '@/lib/providers/webhook-signature';
 import { validateTwilioFormSignature } from '@/lib/providers/twilio-signature';
 import { createOpaqueToken, hashOpaqueToken, timingSafeEqual } from '@/lib/server/ids';
+import { resolveNotificationRoutes } from '@/lib/server/routing';
+import { normaliseAustralianMobile } from '@/lib/server/phone';
 
 async function twilioSignature(secret: string, url: string, rawBody: string) {
   const params = new URLSearchParams(rawBody);
@@ -46,5 +48,30 @@ describe('signed provider callbacks', () => {
     const signature = await hmacSha256Hex('voice-secret', '{"call":"CA123"}');
     await expect(validateHmacSha256('voice-secret', '{"call":"CA123"}', signature)).resolves.toBe(true);
     await expect(validateHmacSha256('voice-secret', '{"call":"CA124"}', signature)).resolves.toBe(false);
+  });
+});
+
+describe('tenant notification routing', () => {
+  it('normalises common Australian mobile formats and rejects non-mobile destinations', () => {
+    expect(normaliseAustralianMobile('0412 345 678')).toBe('+61412345678');
+    expect(normaliseAustralianMobile('61412345678')).toBe('+61412345678');
+    expect(normaliseAustralianMobile('+61 (0) 412 345 678')).toBeNull();
+    expect(normaliseAustralianMobile('07 5551 2040')).toBeNull();
+  });
+  it('uses the configured hot-lead mobile instead of assuming the owner mobile', () => {
+    expect(resolveNotificationRoutes({ ownerPhone: '+61400000000', notificationPhone: '+61411111111', callRules: {}, urgency: 'standard' }))
+      .toEqual([{ phone: '+61411111111', reason: 'primary' }]);
+  });
+
+  it('copies urgent jobs to a distinct configured backup', () => {
+    expect(resolveNotificationRoutes({ ownerPhone: '+61400000000', notificationPhone: '+61411111111', callRules: { backupNotificationPhone: '+61422222222', urgentNotifyBackup: true }, urgency: 'urgent' }))
+      .toEqual([{ phone: '+61411111111', reason: 'primary' }, { phone: '+61422222222', reason: 'urgent_copy' }]);
+  });
+
+  it('uses the backup after primary delivery fails without duplicating one number', () => {
+    expect(resolveNotificationRoutes({ ownerPhone: '+61400000000', notificationPhone: '+61411111111', callRules: { backupNotificationPhone: '+61422222222' }, urgency: 'standard', primaryDeliveryFailed: true }))
+      .toEqual([{ phone: '+61411111111', reason: 'primary' }, { phone: '+61422222222', reason: 'delivery_fallback' }]);
+    expect(resolveNotificationRoutes({ ownerPhone: '+61400000000', notificationPhone: '+61411111111', callRules: { backupNotificationPhone: '+61411111111', urgentNotifyBackup: true }, urgency: 'urgent' }))
+      .toHaveLength(1);
   });
 });

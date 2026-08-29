@@ -4,6 +4,7 @@ import { priceItems, tenantSettings, tenantUsers, tenants } from '@/db/schema';
 import { requireOperatorAccess } from '@/lib/server/access';
 import { audit } from '@/lib/server/audit';
 import { json, problem, readJsonObject } from '@/lib/server/http';
+import { normaliseAustralianMobile } from '@/lib/server/phone';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,9 +34,23 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
   const now = new Date().toISOString();
   const businessName = typeof body.businessName === 'string' ? body.businessName.trim().slice(0, 180) : tenant.businessName;
   const serviceSuburbs = Array.isArray(body.serviceSuburbs) ? body.serviceSuburbs.filter((value): value is string => typeof value === 'string').map((value) => value.trim().slice(0, 80)).filter(Boolean).slice(0, 40) : tenant.serviceSuburbs;
-  const callRules = body.callRules && typeof body.callRules === 'object' && !Array.isArray(body.callRules) ? body.callRules as Record<string, unknown> : settings.callRules;
+  const requestedCallRules = body.callRules && typeof body.callRules === 'object' && !Array.isArray(body.callRules) ? body.callRules as Record<string, unknown> : {};
+  if (typeof requestedCallRules.backupNotificationPhone === 'string') {
+    const rawBackup = requestedCallRules.backupNotificationPhone.trim();
+    if (rawBackup) {
+      const backup = normaliseAustralianMobile(rawBackup);
+      if (!backup) return problem(400, 'invalid_backup_mobile', 'Add a valid Australian backup mobile.');
+      requestedCallRules.backupNotificationPhone = backup;
+    } else requestedCallRules.backupNotificationPhone = '';
+  }
+  const callRules = { ...settings.callRules, ...requestedCallRules, discloseAi: true, discloseRecording: true, neverQuoteByPhone: true };
   const greetingName = typeof body.greetingName === 'string' && body.greetingName.trim() ? body.greetingName.trim().slice(0, 120) : settings.greetingName;
-  const notificationPhone = typeof body.notificationPhone === 'string' && body.notificationPhone.trim() ? body.notificationPhone.trim().slice(0, 30) : settings.notificationPhone;
+  let notificationPhone = settings.notificationPhone;
+  if (typeof body.notificationPhone === 'string' && body.notificationPhone.trim()) {
+    const normalised = normaliseAustralianMobile(body.notificationPhone);
+    if (!normalised) return problem(400, 'invalid_notification_mobile', 'Add a valid Australian hot-lead mobile.');
+    notificationPhone = normalised;
+  }
   await getDb().update(tenants).set({ businessName, serviceSuburbs, updatedAt: now }).where(eq(tenants.id, id));
   await getDb().update(tenantSettings).set({ callRules, greetingName, notificationPhone, updatedAt: now }).where(and(eq(tenantSettings.tenantId, id)));
   await audit({ tenantId: id, actorType: 'operator', actorId: access.actorId, type: 'tenant.settings_updated', resourceType: 'tenant', resourceId: id, payload: { businessName, serviceSuburbs, callRules, greetingName, notificationPhone } });

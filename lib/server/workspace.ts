@@ -2,6 +2,7 @@ import { and, asc, desc, eq, inArray, isNull, or } from 'drizzle-orm';
 import { getD1, getDb, getRuntimeEnv } from '@/db';
 import {
   customers,
+  calls,
   events,
   followUps,
   jobPhotos,
@@ -143,7 +144,7 @@ type EditableLine = { id?: string; priceItemId?: string; description: string; qu
 
 export async function saveDraftQuote(input: { tenantId: string; quoteId: string; actorId: string; note: string; lines: EditableLine[] }) {
   const quote = await getDb().query.quotes.findFirst({ where: and(eq(quotes.tenantId, input.tenantId), eq(quotes.id, input.quoteId)) });
-  if (!quote || !['draft', 'awaiting_approval'].includes(quote.status)) return null;
+  if (!quote || !['draft', 'awaiting_approval', 'change_requested'].includes(quote.status)) return null;
   const tenant = await getDb().query.tenants.findFirst({ where: eq(tenants.id, input.tenantId) });
   if (!tenant) return null;
   const now = new Date().toISOString();
@@ -163,7 +164,7 @@ export async function saveDraftQuote(input: { tenantId: string; quoteId: string;
   const db = getD1();
   const statements: D1PreparedStatement[] = [
     db.prepare('DELETE FROM quote_line_items WHERE quote_id = ? AND tenant_id = ?').bind(input.quoteId, input.tenantId),
-    db.prepare('UPDATE quotes SET customer_note = ?, subtotal_ex_gst_cents = ?, gst_cents = ?, total_cents = ?, status = ?, approval_acknowledged = 0, updated_at = ? WHERE id = ? AND tenant_id = ?')
+    db.prepare('UPDATE quotes SET customer_note = ?, subtotal_ex_gst_cents = ?, gst_cents = ?, total_cents = ?, status = ?, approval_acknowledged = 0, change_request = NULL, change_requested_at = NULL, updated_at = ? WHERE id = ? AND tenant_id = ?')
       .bind(input.note.slice(0, 1000), subtotal, gst, subtotal + gst, 'awaiting_approval', now, input.quoteId, input.tenantId),
   ];
   for (const line of lines) {
@@ -241,19 +242,23 @@ export async function requestQuoteChange(input: { tenantId: string; quoteId: str
   const bundle = await getQuoteBundle(input.tenantId, input.quoteId);
   if (!bundle || bundle.customer.id !== input.customerId || !['sent', 'viewed'].includes(bundle.quote.status)) return null;
   const now = new Date().toISOString();
-  await getDb().update(quotes).set({ status: 'change_requested', changeRequest: input.note.slice(0, 1000), changeRequestedAt: now, updatedAt: now }).where(and(eq(quotes.id, input.quoteId), eq(quotes.tenantId, input.tenantId)));
-  await getDb().insert(events).values({ id: createId('evt'), tenantId: input.tenantId, actorType: 'customer', actorId: input.customerId, type: 'quote.change_requested', resourceType: 'quote', resourceId: input.quoteId, payload: { note: input.note.slice(0, 1000) }, createdAt: now });
+  await getD1().batch([
+    getD1().prepare("UPDATE quotes SET status = 'change_requested', change_request = ?, change_requested_at = ?, updated_at = ? WHERE id = ? AND tenant_id = ?").bind(input.note.slice(0, 1000), now, now, input.quoteId, input.tenantId),
+    getD1().prepare("UPDATE follow_ups SET status = 'cancelled', completed_at = ?, updated_at = ? WHERE quote_id = ? AND tenant_id = ? AND status = 'scheduled'").bind(now, now, input.quoteId, input.tenantId),
+    getD1().prepare('INSERT INTO events (id, tenant_id, actor_type, actor_id, type, resource_type, resource_id, payload, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').bind(createId('evt'), input.tenantId, 'customer', input.customerId, 'quote.change_requested', 'quote', input.quoteId, JSON.stringify({ note: input.note.slice(0, 1000) }), now),
+  ]);
   const owner = await getDb().query.tenantUsers.findFirst({ where: and(eq(tenantUsers.tenantId, input.tenantId), eq(tenantUsers.role, 'owner')) });
   if (owner) await sendSms({ tenantId: input.tenantId, to: owner.phoneE164, from: bundle.tenant.smsNumber, body: `CHANGE REQUESTED: ${bundle.customer.name ?? 'Customer'} left a note on the quote for ${bundle.job.title}. Open TradieRelay to review it.`, jobId: bundle.job.id, quoteId: input.quoteId });
   return getQuoteBundle(input.tenantId, input.quoteId);
 }
 
 export async function listOperatorOverview() {
-  const [tenantRows, jobRows, quoteRows, eventRows] = await Promise.all([
+  const [tenantRows, callRows, jobRows, quoteRows, eventRows] = await Promise.all([
     getDb().select().from(tenants).orderBy(asc(tenants.businessName)),
+    getDb().select({ call: calls, tenant: tenants, customer: customers }).from(calls).innerJoin(tenants, eq(tenants.id, calls.tenantId)).leftJoin(customers, eq(customers.id, calls.customerId)).orderBy(desc(calls.startedAt)).limit(80),
     getDb().select({ job: jobs, customer: customers, tenant: tenants }).from(jobs).innerJoin(customers, eq(customers.id, jobs.customerId)).innerJoin(tenants, eq(tenants.id, jobs.tenantId)).where(isNull(jobs.closedAt)).orderBy(desc(jobs.createdAt)).limit(80),
     getDb().select({ quote: quotes, tenant: tenants }).from(quotes).innerJoin(tenants, eq(tenants.id, quotes.tenantId)).orderBy(desc(quotes.updatedAt)).limit(80),
     getDb().select().from(events).orderBy(desc(events.createdAt)).limit(80),
   ]);
-  return { tenants: tenantRows, jobs: jobRows, quotes: quoteRows, events: eventRows };
+  return { tenants: tenantRows, calls: callRows, jobs: jobRows, quotes: quoteRows, events: eventRows };
 }

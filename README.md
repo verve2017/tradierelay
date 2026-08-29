@@ -6,15 +6,17 @@ The public StoryBrand website and the working product live in the same applicati
 
 ## Working experiences
 
-- `/app/demo` — Bob’s tradie job inbox, job detail and approve-before-send quote flow
+- `/app/demo` — Bob’s tradie job inbox, job status controls, products and approve-before-send quote flow
 - `/customer/demo/photos` — customer photo capture and safety guidance
 - `/customer/demo/quote` — customer quote review, acceptance and change request
-- `/operator/demo` — Noah and Jake’s cross-tenant founder console and onboarding flow
+- `/operator/demo` — Noah and Jake’s cross-tenant founder console, routing playbook, technical architecture and 10-to-50 customer plan
 - `/api/health` — binding and provider readiness without exposing secrets
 
 Live links use short-lived, hashed access tokens and replace the token-bearing URL with an HttpOnly session cookie after opening.
 
 The tradie workspace also includes self-service **Products & Prices**. A tradie can add, edit, pause, reactivate and delete saved services, parts or labour rates. Active items can be copied directly into a draft quote, while historical quotes keep their original scope and price. Customer uploads are stored in R2 and appear only on the matching tenant-scoped job under **Customer photos**.
+
+The operator can configure a primary hot-lead mobile and a backup/overflow mobile per tenant. Standard leads go to the primary. Urgent leads can be copied to the backup, and a primary delivery failure attempts the backup and records an operator-visible event. Operator growth-plan completion and console usage telemetry are persisted in D1 for the live console; the public demo keeps progress only in that browser.
 
 ## Product boundaries
 
