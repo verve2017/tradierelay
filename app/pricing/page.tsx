@@ -12,14 +12,26 @@ const plans = [
     price: '$399',
     setup: '$499 setup',
     description: 'For a sole trader who mainly needs missed calls caught quickly.',
-    items: ['Missed-call response', 'Customer details captured', 'Hot lead alerts', 'Your call rules', 'Monthly tune-up'],
+    items: [
+      { label: 'Missed-call response', href: '/features#ai-phone-reception' },
+      { label: 'Customer details captured', href: '/features#lead-qualification' },
+      { label: 'Hot lead alerts', href: '/features#hot-lead-alerts' },
+      { label: 'Your call rules', href: '/features#your-call-rules' },
+      { label: 'Monthly tune-up' },
+    ],
   },
   {
     name: 'Relay',
     price: '$699',
     setup: '$999 setup',
     description: 'For a busy trade business that wants reception and quote follow-up together.',
-    items: ['Everything in Catch', 'AI phone reception', 'Lead qualification', 'Quote follow-up flow', 'Priority setup support'],
+    items: [
+      { label: 'Everything in Catch', href: '/features' },
+      { label: 'AI phone reception', href: '/features#ai-phone-reception' },
+      { label: 'Lead qualification', href: '/features#lead-qualification' },
+      { label: 'Quote follow-up flow', href: '/features#quote-follow-up-flow' },
+      { label: 'Priority setup support', href: '/features#priority-setup-support' },
+    ],
     featured: true,
   },
   {
@@ -27,7 +39,13 @@ const plans = [
     price: '$999',
     setup: '$1,499 setup',
     description: 'For a growing team with more calls, more routing and more than one person on the tools.',
-    items: ['Everything in Relay', 'Multi-person call routing', 'Different job-type rules', 'Higher included usage', 'Fortnightly optimisation'],
+    items: [
+      { label: 'Everything in Relay', href: '/features' },
+      { label: 'Multi-person call routing', href: '/features#multi-person-call-routing' },
+      { label: 'Different job-type rules', href: '/features#different-job-type-rules' },
+      { label: 'Higher included usage', href: '/features#higher-included-usage' },
+      { label: 'Fortnightly optimisation', href: '/features#fortnightly-optimisation' },
+    ],
   },
 ];
 
@@ -51,7 +69,7 @@ export default function PricingPage() {
               <div className="price"><strong>{plan.price}</strong><span>/month + GST</span></div>
               <p className="setup-price">{plan.setup} + GST</p>
               <p className="plan-description">{plan.description}</p>
-              <ul>{plan.items.map((item) => <li key={item}><span>✓</span>{item}</li>)}</ul>
+              <ul>{plan.items.map((item) => <li key={item.label}><span>✓</span>{item.href ? <a href={item.href}>{item.label}</a> : item.label}</li>)}</ul>
               <a href="/book" className={`button ${plan.featured ? '' : 'button-outline'}`}>Talk through this plan</a>
             </article>
           ))}
@@ -60,6 +78,7 @@ export default function PricingPage() {
           <strong>About usage</strong>
           <p>Each plan includes an agreed allowance based on your normal call volume. If usage changes, we tell you before the bill does. Exact inclusions are confirmed in the setup call.</p>
         </div>
+        <div className="shell"><a href="/features" className="features-summary-link">See every feature in plain English and view the app screens →</a></div>
         <div className="shell plan-comparison">
           <div className="section-heading"><p className="eyebrow">PLAN DETAIL</p><h2>Compare what is actually configured.</h2></div>
           <div className="comparison-table" role="table" aria-label="TradieRelay plan comparison">

@@ -18,6 +18,7 @@ export function SiteFooter() {
         </div>
         <div>
           <strong>Confidence</strong>
+          <a href="/features">Features in action</a>
           <a href="/what-it-handles">What it handles</a>
           <a href="/trust">Trust &amp; safeguards</a>
           <a href="/pricing">Pricing</a>
