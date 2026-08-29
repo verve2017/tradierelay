@@ -46,7 +46,7 @@ p { line-height: 1.65; }
 .desktop-nav a { transition: color .18s ease; }
 .desktop-nav a:hover { color: var(--orange-dark); }
 .header-cta { margin-left: 4px; }
-.mobile-menu { display: none; position: relative; }
+.mobile-menu { display: none; position: relative; margin-left: auto; }
 .mobile-menu summary { list-style: none; width: 42px; height: 42px; display: grid; align-content: center; gap: 4px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
 .mobile-menu summary::-webkit-details-marker { display: none; }
 .mobile-menu summary span { display: block; height: 2px; background: var(--ink); border-radius: 2px; }
