@@ -4,7 +4,7 @@ import { getQuoteBundle, saveDraftQuote } from '@/lib/server/workspace';
 
 export const dynamic = 'force-dynamic';
 
-type QuoteLineInput = { id?: string; description: string; quantityMilli: number; unit: string; unitRateExGstCents: number | null };
+type QuoteLineInput = { id?: string; priceItemId?: string; description: string; quantityMilli: number; unit: string; unitRateExGstCents: number | null };
 
 function parseLines(value: unknown): QuoteLineInput[] | null {
   if (!Array.isArray(value) || value.length === 0 || value.length > 30) return null;
@@ -18,6 +18,7 @@ function parseLines(value: unknown): QuoteLineInput[] | null {
     if (line.unitRateExGstCents !== null && (typeof line.unitRateExGstCents !== 'number' || !Number.isFinite(line.unitRateExGstCents) || line.unitRateExGstCents < 0)) return null;
     lines.push({
       id: typeof line.id === 'string' ? line.id : undefined,
+      priceItemId: typeof line.priceItemId === 'string' ? line.priceItemId : undefined,
       description: line.description,
       quantityMilli: line.quantityMilli,
       unit: line.unit,

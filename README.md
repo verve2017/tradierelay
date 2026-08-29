@@ -14,6 +14,8 @@ The public StoryBrand website and the working product live in the same applicati
 
 Live links use short-lived, hashed access tokens and replace the token-bearing URL with an HttpOnly session cookie after opening.
 
+The tradie workspace also includes self-service **Products & Prices**. A tradie can add, edit, pause, reactivate and delete saved services, parts or labour rates. Active items can be copied directly into a draft quote, while historical quotes keep their original scope and price. Customer uploads are stored in R2 and appear only on the matching tenant-scoped job under **Customer photos**.
+
 ## Product boundaries
 
 - AI may capture, summarise and suggest; it cannot send a final quote.

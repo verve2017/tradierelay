@@ -4,6 +4,7 @@ import {
   customers,
   events,
   followUps,
+  jobPhotos,
   jobs,
   priceItems,
   quoteLineItems,
@@ -34,14 +35,19 @@ export async function getWorkspace(tenantId: string, resourceId?: string | null)
   const quoteRows = jobIds.length
     ? await getDb().select().from(quotes).where(and(eq(quotes.tenantId, tenantId), inArray(quotes.jobId, jobIds))).orderBy(desc(quotes.version))
     : [];
+  const photoRows = jobIds.length
+    ? await getDb().select().from(jobPhotos).where(and(eq(jobPhotos.tenantId, tenantId), inArray(jobPhotos.jobId, jobIds))).orderBy(desc(jobPhotos.createdAt))
+    : [];
   const latestQuoteByJob = new Map<string, typeof quoteRows[number]>();
   for (const quote of quoteRows) if (!latestQuoteByJob.has(quote.jobId)) latestQuoteByJob.set(quote.jobId, quote);
+  const photosByJob = new Map<string, typeof photoRows>();
+  for (const photo of photoRows) photosByJob.set(photo.jobId, [...(photosByJob.get(photo.jobId) ?? []), photo]);
 
   return {
     tenant,
     settings,
     user,
-    jobs: jobRows.map(({ job, customer }) => ({ ...job, customer, quote: latestQuoteByJob.get(job.id) ?? null })),
+    jobs: jobRows.map(({ job, customer }) => ({ ...job, customer, quote: latestQuoteByJob.get(job.id) ?? null, photos: (photosByJob.get(job.id) ?? []).map((photo) => ({ id: photo.id, contentType: photo.contentType, sizeBytes: photo.sizeBytes, caption: photo.caption, createdAt: photo.createdAt, url: `/api/app/jobs/${job.id}/photos/${photo.id}` })) })),
   };
 }
 
@@ -133,7 +139,7 @@ export async function createDraftQuote(input: { tenantId: string; jobId: string;
   return getQuoteBundle(input.tenantId, quoteId);
 }
 
-type EditableLine = { id?: string; description: string; quantityMilli: number; unit: string; unitRateExGstCents: number | null };
+type EditableLine = { id?: string; priceItemId?: string; description: string; quantityMilli: number; unit: string; unitRateExGstCents: number | null };
 
 export async function saveDraftQuote(input: { tenantId: string; quoteId: string; actorId: string; note: string; lines: EditableLine[] }) {
   const quote = await getDb().query.quotes.findFirst({ where: and(eq(quotes.tenantId, input.tenantId), eq(quotes.id, input.quoteId)) });
@@ -146,10 +152,10 @@ export async function saveDraftQuote(input: { tenantId: string; quoteId: string;
     const rate = line.unitRateExGstCents === null ? null : Math.max(0, Math.round(line.unitRateExGstCents));
     const total = rate === null ? null : Math.round((rate * quantityMilli) / 1000);
     return {
-      id: line.id ?? createId('qli'), tenantId: input.tenantId, quoteId: input.quoteId, priceItemId: null,
+      id: line.id ?? createId('qli'), tenantId: input.tenantId, quoteId: input.quoteId, priceItemId: line.priceItemId ?? null,
       description: line.description.trim().slice(0, 180), quantityMilli, unit: line.unit.slice(0, 30),
       unitRateExGstCents: rate, lineTotalExGstCents: total, needsInput: rate === null,
-      source: 'manual', position, createdAt: now, updatedAt: now,
+      source: line.priceItemId ? 'price_list' : 'manual', position, createdAt: now, updatedAt: now,
     };
   });
   const subtotal = lines.reduce((sum, line) => sum + (line.lineTotalExGstCents ?? 0), 0);
@@ -165,7 +171,7 @@ export async function saveDraftQuote(input: { tenantId: string; quoteId: string;
       .bind(line.id, line.tenantId, line.quoteId, line.priceItemId, line.description, line.quantityMilli, line.unit, line.unitRateExGstCents, line.lineTotalExGstCents, line.needsInput ? 1 : 0, line.source, line.position, line.createdAt, line.updatedAt));
   }
   statements.push(db.prepare('INSERT INTO events (id, tenant_id, actor_type, actor_id, type, resource_type, resource_id, payload, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    .bind(createId('evt'), input.tenantId, 'tenant_user', input.actorId, 'quote.draft_updated', 'quote', input.quoteId, JSON.stringify({ lineCount: lines.length }), now));
+    .bind(createId('evt'), input.tenantId, 'tenant_user', input.actorId, 'quote.draft_updated', 'quote', input.quoteId, JSON.stringify({ lineCount: lines.length, savedProductIds: lines.flatMap((line) => line.priceItemId ? [line.priceItemId] : []) }), now));
   await db.batch(statements);
   return getQuoteBundle(input.tenantId, input.quoteId);
 }
