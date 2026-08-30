@@ -4,12 +4,52 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { getBlogArticle, type BlogArticle } from '@/lib/blog';
 import { getTrade, tradePages } from '@/lib/trades';
 
 const origin = 'https://tradie-relay.verve-9089.chatgpt.site';
 
 type TradePageProps = {
   params: Promise<{ slug: string }>;
+};
+
+const tradeArticleSlugs: Record<string, string[]> = {
+  plumbers: [
+    'ai-receptionist-plumbing-call-flow',
+    'questions-ai-receptionist-ask-plumbing-caller',
+    'urgent-jobs-vs-emergency-jobs',
+    'how-tradies-handle-after-hours-calls',
+  ],
+  electricians: [
+    'ai-receptionist-electrical-call-flow',
+    'questions-ai-receptionist-ask-electrical-caller',
+    'how-do-you-answer-calls-when-on-tools',
+    'write-emergency-wording-ai-receptionist',
+  ],
+  'air-conditioning': [
+    'ai-receptionist-air-conditioning-call-flow',
+    'customer-photos-help-qualify-trade-job',
+    'quote-follow-up-without-sounding-pushy',
+    'ai-receptionist-transfer-urgent-calls',
+  ],
+  carpenters: [
+    'ai-receptionist-carpentry-call-flow',
+    'set-up-no-answer-call-forwarding',
+    'what-job-photos-should-tradies-request',
+    'how-soon-follow-up-after-sending-trade-quote',
+  ],
+  painters: [
+    'ai-receptionist-painting-call-flow',
+    'what-is-lead-qualification-for-tradies',
+    'handle-quote-questions-change-requests',
+    'measure-automated-quote-follow-up',
+  ],
+  landscapers: [
+    'ai-receptionist-landscaping-call-flow',
+    'how-tradies-define-service-area',
+    'when-automated-quote-follow-up-stop',
+    'how-tradie-set-call-answering-rules',
+  ],
 };
 
 export function generateStaticParams() {
@@ -58,6 +98,9 @@ export default async function TradeDetailPage({ params }: TradePageProps) {
 
   const url = `${origin}/trades/${trade.slug}`;
   const relatedTrades = tradePages.filter((item) => item.slug !== trade.slug);
+  const tradeArticles = (tradeArticleSlugs[trade.slug] || [])
+    .map(getBlogArticle)
+    .filter((article): article is BlogArticle => Boolean(article));
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -248,6 +291,40 @@ export default async function TradeDetailPage({ params }: TradePageProps) {
           <div className="faq-list">
             {trade.faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
           </div>
+        </div>
+      </section>
+
+      <section className="section trade-resources-section" aria-labelledby="trade-resources-heading">
+        <div className="shell">
+          <div className="trade-resources-heading">
+            <div>
+              <p className="eyebrow">PRACTICAL GUIDES FOR {trade.name.toUpperCase()}</p>
+              <h2 id="trade-resources-heading">Useful answers for the calls and jobs you handle.</h2>
+            </div>
+            <p>Start with the {trade.singular}-specific call playbook, then dig into the qualification, follow-up and customer-handling questions that matter most for this trade.</p>
+          </div>
+          <div className="trade-resources-grid">
+            {tradeArticles.map((article) => (
+              <a className="trade-resource-card" href={`/blog/${article.slug}`} key={article.slug}>
+                <figure>
+                  <Image
+                    src={article.heroImage}
+                    alt={article.heroAlt}
+                    fill
+                    sizes="(max-width: 680px) calc(100vw - 32px), (max-width: 1040px) 48vw, 285px"
+                    style={{ objectPosition: article.heroPosition || 'center' }}
+                  />
+                </figure>
+                <div>
+                  <span>{article.category} · {article.readMinutes} min read</span>
+                  <h3>{article.title}</h3>
+                  <p>{article.description}</p>
+                  <strong>Read the guide <b aria-hidden="true">→</b></strong>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="trade-resources-footer"><span>128 practical guides for Australian trade businesses</span><a href="/blog">Search all resources →</a></div>
         </div>
       </section>
 

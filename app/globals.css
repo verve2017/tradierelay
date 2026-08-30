@@ -920,6 +920,25 @@ h3 { margin: 0; font-size: 23px; line-height: 1.18; letter-spacing: -.025em; }
 .trade-boundary-panel h2 { font-size: clamp(34px, 4vw, 52px); }
 .trade-boundary-panel > p { margin: 0; color: #c1c9ce; font-size: 18px; }
 .trade-detail-faq { background: #fbfaf7; }
+.trade-resources-section { background: var(--cream); }
+.trade-resources-heading { display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: 80px; margin-bottom: 46px; }
+.trade-resources-heading h2 { max-width: 720px; }
+.trade-resources-heading > p { margin: 0; color: var(--ink-soft); font-size: 17px; }
+.trade-resources-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.trade-resource-card { min-width: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #d8d5ce; border-radius: 14px; background: white; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.trade-resource-card:hover { transform: translateY(-4px); border-color: #efad87; box-shadow: 0 18px 38px rgba(17,24,32,.11); }
+.trade-resource-card figure { position: relative; height: 205px; margin: 0; overflow: hidden; background: #dedbd4; }
+.trade-resource-card figure::after { content: ''; position: absolute; inset: 0; border-bottom: 1px solid rgba(17,24,32,.08); background: linear-gradient(180deg, transparent 72%, rgba(17,24,32,.14)); pointer-events: none; }
+.trade-resource-card figure img { object-fit: cover; transition: transform .35s ease; }
+.trade-resource-card:hover figure img { transform: scale(1.035); }
+.trade-resource-card > div { flex: 1; display: flex; flex-direction: column; padding: 24px; }
+.trade-resource-card > div > span { color: var(--orange-dark); font: 800 9px/1.35 var(--font-geist-mono), monospace; letter-spacing: .075em; text-transform: uppercase; }
+.trade-resource-card h3 { margin-top: 20px; font-size: 22px; }
+.trade-resource-card p { margin: 12px 0 0; color: #5e6b74; font-size: 13px; }
+.trade-resource-card strong { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 24px; color: var(--ink); font-size: 12px; }
+.trade-resource-card strong b { color: var(--orange-dark); font-size: 16px; }
+.trade-resources-footer { display: flex; justify-content: space-between; gap: 30px; align-items: center; margin-top: 26px; padding-top: 22px; border-top: 1px solid #d3cfc6; color: #6a757d; font-size: 12px; }
+.trade-resources-footer a { color: var(--orange-dark); font-weight: 800; }
 .related-trades-section { padding-top: 82px; padding-bottom: 82px; }
 .related-trades-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 38px; }
 .related-trades-heading h2 { font-size: clamp(35px, 4vw, 52px); }
@@ -1082,6 +1101,7 @@ h3 { margin: 0; font-size: 23px; line-height: 1.18; letter-spacing: -.025em; }
   .trade-quote-grid article:nth-child(2) { border-right: 0; }
   .trade-quote-grid article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .related-trades-grid { grid-template-columns: repeat(3, 1fr); }
+  .trade-resources-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 900px) {
@@ -1093,6 +1113,7 @@ h3 { margin: 0; font-size: 23px; line-height: 1.18; letter-spacing: -.025em; }
   .trade-question-copy { position: static; }
   .trade-photo-proof img { min-height: 450px; }
   .related-trades-grid { grid-template-columns: 1fr 1fr; }
+  .trade-resources-heading { grid-template-columns: 1fr; align-items: start; gap: 24px; }
 }
 
 @media (max-width: 680px) {
@@ -1119,6 +1140,10 @@ h3 { margin: 0; font-size: 23px; line-height: 1.18; letter-spacing: -.025em; }
   .trade-boundary-panel { padding: 32px 24px; }
   .related-trades-heading { align-items: flex-start; flex-direction: column; }
   .related-trades-grid figure { height: 210px; }
+  .trade-resources-grid { grid-template-columns: 1fr; }
+  .trade-resource-card figure { height: 230px; }
+  .trade-resource-card > div { padding: 23px 21px; }
+  .trade-resources-footer { align-items: flex-start; flex-direction: column; gap: 9px; }
   .footer-trade-links { align-items: flex-start; flex-direction: column; gap: 11px; }
 }
 
