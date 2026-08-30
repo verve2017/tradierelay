@@ -3,125 +3,33 @@ import { CtaBand } from '@/components/cta-band';
 import { ProductScreen } from '@/components/product-screen';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { featurePages, type FeaturePage } from '@/lib/features';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
-  'Features in action',
+  'All features',
   'See exactly what every TradieRelay feature does, what the customer experiences and what stays under the tradie’s control.',
   '/features',
 );
 
-const callFeatures = [
-  {
-    id: 'ai-phone-reception',
-    number: '01',
-    title: 'AI phone reception',
-    plain: 'When a call follows the rule you chose—missed, busy, overflow or after hours—the assistant answers using your business name and clearly says it is automated.',
-    customer: 'They can explain the job straight away instead of reaching a dead-end voicemail.',
-    tradie: 'A call record and useful next step without stopping the job in front of you.',
-    control: 'The greeting, hours, transfer rules, approved answers and anything the assistant must never promise.',
-  },
-  {
-    id: 'your-call-rules',
-    number: '02',
-    title: 'Your call rules',
-    plain: 'TradieRelay follows a written rulebook for your service area, job types, opening hours, preferred work, exclusions and hand-offs.',
-    customer: 'A clear answer that matches how your business actually works.',
-    tradie: 'Fewer unsuitable enquiries and fewer awkward promises to unwind later.',
-    control: 'Every live rule. Nothing changes because the AI “felt like it”.',
-  },
-  {
-    id: 'lead-qualification',
-    number: '03',
-    title: 'Lead qualification',
-    plain: 'The assistant collects the caller’s name, callback number, suburb, job type, plain-English problem, urgency, timing and any evidence your flow needs.',
-    customer: 'They tell the story once and know what happens next.',
-    tradie: 'Enough detail to decide whether to call, book, quote, route or politely decline.',
-    control: 'Which questions are asked, what counts as a fit and when uncertainty goes to a person.',
-  },
-  {
-    id: 'hot-lead-alerts',
-    number: '04',
-    title: 'Hot lead alerts',
-    plain: 'When an enquiry matches the urgency and fit rules you approved, a short alert lands with the important details already pulled out.',
-    customer: 'A quicker response from the right person.',
-    tradie: 'Who called, where they are, what is wrong, why it is urgent and the requested next step.',
-    control: 'What earns a hot label, who receives it and what happens if the first person does not respond.',
-  },
-];
+const callFeatures = featurePages.filter((feature) => feature.category === 'Calls');
+const workflowFeatures = featurePages.filter((feature) => feature.category === 'Workflow');
+const serviceFeatures = featurePages.filter((feature) => feature.category === 'Service');
 
-const workflowFeatures = [
-  {
-    id: 'quote-follow-up-flow',
-    number: '05',
-    title: 'Quote follow-up flow',
-    plain: 'After a quote is marked as sent, TradieRelay sends the agreed check-ins, sorts the reply and stops when the customer books, declines, opts out or reaches the follow-up limit.',
-    customer: 'A useful reminder and an easy way to ask a question—not the same “just following up” text five times.',
-    tradie: 'Questions, objections and ready-to-book replies surfaced with the quote context.',
-    control: 'Timing, wording, maximum attempts, stop conditions and every message that needs human approval.',
-  },
-  {
-    id: 'multi-person-call-routing',
-    number: '06',
-    title: 'Multi-person call routing',
-    plain: 'Different enquiries can go to different people or teams based on the rules you set—then follow a fallback if nobody takes it.',
-    customer: 'They reach the person most likely to help without being bounced around blindly.',
-    tradie: 'The right lead reaches the right estimator, office person, technician or owner.',
-    control: 'Routing order, working hours, fallback person, transfer limits and when to take a message instead.',
-  },
-  {
-    id: 'different-job-type-rules',
-    number: '07',
-    title: 'Different job-type rules',
-    plain: 'An emergency leak should not follow the same questions as a bathroom quote. Each job type can have its own questions, fit checks, urgency rules and next step.',
-    customer: 'A shorter, more relevant conversation.',
-    tradie: 'Better information without making every caller sit through every question.',
-    control: 'Which job types exist, what each flow asks and which jobs are escalated, booked or declined.',
-  },
-];
-
-const serviceFeatures = [
-  {
-    id: 'priority-setup-support',
-    number: '08',
-    title: 'Priority setup support',
-    plain: 'Noah personally maps your call flow, chases the information needed to finish it and keeps your launch moving ahead of standard setup work.',
-    outcome: 'You know who owns the setup and who to call when a rule is unclear.',
-    boundary: 'Priority means a faster, named setup path. It does not mean unsafe changes go live without testing.',
-  },
-  {
-    id: 'higher-included-usage',
-    number: '09',
-    title: 'Higher included usage',
-    plain: 'The Crew plan includes a larger agreed pool of answered call time, messages and active follow-up work before extra usage applies.',
-    outcome: 'A growing team can handle more enquiries without treating every extra call as a surprise bill.',
-    boundary: 'It is not “unlimited”. Your allowance and any extra-use rate are written into the proposal before launch.',
-  },
-  {
-    id: 'fortnightly-optimisation',
-    number: '10',
-    title: 'Fortnightly optimisation',
-    plain: 'Every two weeks, Noah and Jake review what callers asked, where the assistant handed off, which leads were useful and what created avoidable work.',
-    outcome: 'The service gets clearer as real calls show what your customers actually need.',
-    boundary: 'They recommend changes; you approve changes to live wording, qualification or routing rules.',
-  },
-];
-
-type DefinedFeature = (typeof callFeatures)[number];
-
-function DefinitionCard({ feature }: { feature: DefinedFeature }) {
+function DefinitionCard({ feature }: { feature: FeaturePage }) {
   return (
-    <article className="definition-card" id={feature.id}>
+    <article className="definition-card" id={feature.slug}>
       <div className="definition-heading">
         <span>{feature.number}</span>
-        <div><p>PLAIN ENGLISH</p><h3>{feature.title}</h3></div>
+        <div><p>PLAIN ENGLISH</p><h3>{feature.name}</h3></div>
       </div>
-      <p className="definition-plain">{feature.plain}</p>
+      <p className="definition-plain">{feature.overview.plain}</p>
       <div className="definition-answers">
-        <div><strong>What the customer gets</strong><p>{feature.customer}</p></div>
-        <div><strong>What lands with you</strong><p>{feature.tradie}</p></div>
-        <div><strong>You stay in control of</strong><p>{feature.control}</p></div>
+        <div><strong>What the customer gets</strong><p>{feature.overview.customer}</p></div>
+        <div><strong>What lands with you</strong><p>{feature.overview.tradie}</p></div>
+        <div><strong>You stay in control of</strong><p>{feature.overview.control}</p></div>
       </div>
+      <a className="definition-detail-link" href={`/features/${feature.slug}`}>See the complete feature <span>→</span></a>
     </article>
   );
 }
@@ -134,7 +42,7 @@ export default function FeaturesPage() {
       <section className="feature-hero">
         <div className="shell feature-hero-grid">
           <div>
-            <p className="eyebrow">SEE THE SERVICE BEFORE YOU BUY</p>
+            <p className="eyebrow">ALL FEATURES · SEE THE SERVICE BEFORE YOU BUY</p>
             <h1>A tick on a pricing page doesn’t tell you what happens after the phone rings.</h1>
             <p className="feature-hero-lede">You do not need another tech list. You need to know what the customer hears, what lands with you and what TradieRelay will never decide without you.</p>
             <div className="hero-actions">
@@ -189,7 +97,7 @@ export default function FeaturesPage() {
             <div><p className="eyebrow">WHEN THE PHONE RINGS</p><h2>Calls are answered by your rules—not a mystery bot.</h2></div>
             <p>These four features work together. Reception starts the conversation, your rules set the boundaries, qualification gathers the useful facts and the alert tells the right person what to do.</p>
           </div>
-          <div className="definition-grid">{callFeatures.map((feature) => <DefinitionCard feature={feature} key={feature.id} />)}</div>
+          <div className="definition-grid">{callFeatures.map((feature) => <DefinitionCard feature={feature} key={feature.slug} />)}</div>
         </div>
       </section>
 
@@ -218,7 +126,7 @@ export default function FeaturesPage() {
             <div><p className="eyebrow">AFTER THE FIRST CALL</p><h2>The follow-up keeps moving without losing your judgement.</h2></div>
             <p>TradieRelay can chase an answer and move information to the right person. It cannot choose your price, diagnose a job or invent a promise.</p>
           </div>
-          <div className="definition-grid definition-grid-three">{workflowFeatures.map((feature) => <DefinitionCard feature={feature} key={feature.id} />)}</div>
+          <div className="definition-grid definition-grid-three">{workflowFeatures.map((feature) => <DefinitionCard feature={feature} key={feature.slug} />)}</div>
         </div>
       </section>
 
@@ -230,12 +138,13 @@ export default function FeaturesPage() {
           </div>
           <div className="service-definition-grid">
             {serviceFeatures.map((feature) => (
-              <article id={feature.id} key={feature.id}>
+              <article id={feature.slug} key={feature.slug}>
                 <span>{feature.number}</span>
-                <h3>{feature.title}</h3>
-                <p>{feature.plain}</p>
-                <div><strong>What you get</strong><p>{feature.outcome}</p></div>
-                <div><strong>The boundary</strong><p>{feature.boundary}</p></div>
+                <h3>{feature.name}</h3>
+                <p>{feature.overview.plain}</p>
+                <div><strong>What you get</strong><p>{feature.overview.outcome}</p></div>
+                <div><strong>The boundary</strong><p>{feature.overview.boundary}</p></div>
+                <a className="service-detail-link" href={`/features/${feature.slug}`}>See the complete feature <span>→</span></a>
               </article>
             ))}
           </div>
