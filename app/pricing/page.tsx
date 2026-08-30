@@ -58,6 +58,10 @@ export default function PricingPage() {
         title="Cost less than one decent job."
         body="Clear monthly plans for the Gold Coast pilot. We start with the smallest setup that can recover real work for your business."
         note="No long-term lock-in during the pilot"
+        image="/blog/tradie-calculating-ai-cost.webp"
+        imageAlt="Gold Coast tradie comparing business costs with a calculator and phone"
+        imageBadge="START WITH THE NUMBERS"
+        imageCaption="Compare the plan with the work missed today."
       />
 
       <section className="section pricing-section">

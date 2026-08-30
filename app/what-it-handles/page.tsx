@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
+import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -16,6 +17,10 @@ export default function WhatItHandlesPage() {
         title="The phone work that falls between the actual jobs."
         body="Start with one leak in the process—usually missed calls or quiet quotes. Add more only when the first part is working."
         note="No big-bang software rollout"
+        image="/blog/trade-dispatch-several-calls.webp"
+        imageAlt="Australian trade team sorting incoming jobs and call priorities in a workshop"
+        imageBadge="ONE QUEUE, CLEAR PRIORITIES"
+        imageCaption="The team sees what needs attention next."
       />
 
       <section className="section feature-detail-section">
@@ -36,6 +41,26 @@ export default function WhatItHandlesPage() {
             <div className="feature-title"><span>04</span><div><p className="mini-label">LEAD SORTING</p><h2>See the hot jobs first.</h2></div></div>
             <div className="feature-body"><p>Instead of a pile of vague messages, enquiries arrive with the facts you need to decide what gets attention.</p><ul className="plain-checks"><li><span>✓</span>Job type and location</li><li><span>✓</span>Urgency and timing</li><li><span>✓</span>Photos or useful notes where available</li><li><span>✓</span>Clear callback request</li></ul></div>
           </article>
+        </div>
+      </section>
+
+      <section className="section page-visual-break" aria-labelledby="handled-visual-heading">
+        <div className="shell">
+          <div className="page-visual-heading">
+            <div><p className="eyebrow">WHAT “HANDLED” LOOKS LIKE</p><h2 id="handled-visual-heading">The call, evidence and next action stay together.</h2></div>
+            <p>The dashboard uses short job tiles so you can spot what needs you. When photos are requested, the customer gets a simple upload page rather than an app to learn.</p>
+          </div>
+          <div className="page-visual-grid page-visual-grid-dashboard">
+            <figure className="page-visual-card page-visual-screenshot">
+              <Image src="/blog/tradierelay-dashboard.png" alt="TradieRelay working dashboard showing a captured customer job and attached evidence" width={1280} height={720} sizes="(max-width: 900px) 100vw, 65vw" />
+              <figcaption><span>TRADIE VIEW · FAKE DATA</span><strong>The job lands with the caller’s words, useful fields, evidence and next move.</strong></figcaption>
+            </figure>
+            <figure className="page-visual-card page-visual-phone">
+              <Image src="/blog/tradierelay-photo-request.png" alt="TradieRelay customer photo request showing clear upload instructions" width={430} height={932} sizes="(max-width: 900px) 100vw, 360px" />
+              <figcaption><span>CUSTOMER VIEW</span><strong>No login. A clear request and a secure upload link.</strong></figcaption>
+            </figure>
+          </div>
+          <p className="prototype-disclaimer">Working product prototype shown with fictional demonstration data. Live fields and wording are approved during setup.</p>
         </div>
       </section>
 

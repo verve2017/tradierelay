@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -24,6 +25,10 @@ export default function SetupPage() {
         title="We learn the business before we answer for it."
         body="A useful receptionist is built from your real calls, service rules and judgement—not a generic trade-business template."
         note="Nothing goes live until you approve the test flow"
+        image="/blog/customised-setup-workshop.webp"
+        imageAlt="TradieRelay operator and an Australian tradie working through call scenarios during setup"
+        imageBadge="BUILT WITH YOU"
+        imageCaption="Real calls become clear, testable rules."
       />
 
       <section className="section launch-section">
@@ -35,6 +40,25 @@ export default function SetupPage() {
           {launchStages.map((stage) => (
             <article key={stage.day}><span>{stage.day}</span><h3>{stage.title}</h3><p>{stage.body}</p><small>{stage.output}</small></article>
           ))}
+        </div>
+      </section>
+
+      <section className="section page-visual-break page-visual-break-compact" aria-labelledby="setup-visual-heading">
+        <div className="shell">
+          <div className="page-visual-heading">
+            <div><p className="eyebrow">YOUR KNOWLEDGE, MADE USABLE</p><h2 id="setup-visual-heading">We turn the way you already work into rules the service can follow.</h2></div>
+            <p>The workshop captures the calls you want, the questions that matter and the prices you are comfortable saving. You review the result before it goes live.</p>
+          </div>
+          <div className="page-visual-grid">
+            <figure className="page-visual-card page-visual-photo">
+              <Image src="/blog/mapping-call-rules.webp" alt="Australian tradie and operator mapping call routing rules together" width={1200} height={800} sizes="(max-width: 900px) 100vw, 50vw" />
+              <figcaption><span>SETUP WORKSHOP</span><strong>Normal calls, awkward calls and clear hand-offs are mapped together.</strong></figcaption>
+            </figure>
+            <figure className="page-visual-card page-visual-screenshot">
+              <Image src="/blog/tradierelay-products-prices-v2.png" alt="TradieRelay products and prices screen showing saved services and editable prices" width={1280} height={720} sizes="(max-width: 900px) 100vw, 50vw" />
+              <figcaption><span>YOUR ACCOUNT · FAKE DATA</span><strong>Saved products and prices remain editable by the tradie.</strong></figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 

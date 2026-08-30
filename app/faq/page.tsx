@@ -62,7 +62,16 @@ export default function FaqPage() {
   return (
     <main>
       <SiteHeader />
-      <PageHero eyebrow="FREQUENTLY ASKED QUESTIONS" title="The questions you should ask before handing over the phone." body="Phone routing, caller experience, control, pricing and the awkward edge cases—answered without the sales fog." note="Still unsure? Bring the question to Noah" />
+      <PageHero
+        eyebrow="FREQUENTLY ASKED QUESTIONS"
+        title="The questions you should ask before handing over the phone."
+        body="Phone routing, caller experience, control, pricing and the awkward edge cases—answered without the sales fog."
+        note="Still unsure? Bring the question to Noah"
+        image="/blog/questions-before-buying.webp"
+        imageAlt="Australian tradie reviewing a checklist before choosing an AI receptionist"
+        imageBadge="CHECK BEFORE YOU BUY"
+        imageCaption="Ask about the awkward calls, not just the easy demo."
+      />
       <section className="section complete-faq-section">
         <div className="shell complete-faq-grid">
           {groups.map((group) => (

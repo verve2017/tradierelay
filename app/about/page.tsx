@@ -16,6 +16,10 @@ export default function AboutPage() {
         title="A local team fixing a clear business leak."
         body="TradieRelay is being built by Noah and Jake for trade businesses that are good at the work but cannot be everywhere at once."
         note="Founding-customer pilot now open"
+        image="/blog/young-founders-testing-call-flow.webp"
+        imageAlt="Two young Australian business founders testing a trade call workflow together"
+        imageBadge="A TWO-FOUNDER BUSINESS"
+        imageCaption="Sales, setup, building and testing have named owners."
       />
 
       <section className="section">

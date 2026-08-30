@@ -24,6 +24,10 @@ export default function HowItWorksPage() {
         title="The call gets handled. You get the useful bit."
         body="TradieRelay sits between a ringing phone and a lost job. It handles the repeatable questions, then brings you in when your experience matters."
         note="Built around your current number and workflow"
+        image="/blog/customer-hearing-ai-greeting.webp"
+        imageAlt="Australian homeowner speaking with an automated trade receptionist after a missed call"
+        imageBadge="THE CUSTOMER SIDE"
+        imageCaption="A clear answer while you keep working."
       />
 
       <section className="section">

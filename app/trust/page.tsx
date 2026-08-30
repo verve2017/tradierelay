@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { PageHero } from '@/components/page-hero';
 import { SiteFooter } from '@/components/site-footer';
@@ -15,6 +16,10 @@ export default function TrustPage() {
         title="Competent automation knows where it must stop."
         body="TradieRelay is designed to handle repeatable phone work while keeping pricing, diagnosis, safety and final commitments with the trade business."
         note="Every live rule is reviewable and changeable"
+        image="/blog/evaluating-ai-receptionist.webp"
+        imageAlt="Australian trade business team reviewing an AI receptionist workflow before launch"
+        imageBadge="REVIEW BEFORE RELEASE"
+        imageCaption="Rules and fallbacks are checked with a person."
       />
 
       <section className="section trust-principles-section">
@@ -36,6 +41,25 @@ export default function TrustPage() {
             <article><span>2</span><div><strong>Conversation boundaries</strong><p>Explicit “may answer”, “must ask” and “must hand over” rules.</p></div></article>
             <article><span>3</span><div><strong>Fallback behaviour</strong><p>When uncertain, capture details and escalate instead of filling the gap.</p></div></article>
             <article><span>4</span><div><strong>Human review</strong><p>Real conversations drive approved improvements to wording and routing.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section page-visual-break page-visual-break-trust" aria-labelledby="trust-visual-heading">
+        <div className="shell">
+          <div className="page-visual-heading">
+            <div><p className="eyebrow">VISIBLE CONTROLS</p><h2 id="trust-visual-heading">The team reviews the rules. The customer sees the promise.</h2></div>
+            <p>Trust is built at both ends: the operator can check what the system is allowed to do, and the customer receives a clear record of the real business, scope and next step.</p>
+          </div>
+          <div className="page-visual-grid page-visual-grid-dashboard">
+            <figure className="page-visual-card page-visual-photo">
+              <Image src="/blog/customer-data-security-review.webp" alt="Australian trade business owner reviewing customer data access with an office coordinator" width={1200} height={800} sizes="(max-width: 900px) 100vw, 65vw" />
+              <figcaption><span>HUMAN REVIEW</span><strong>Access, retention and fallbacks are agreed before launch.</strong></figcaption>
+            </figure>
+            <figure className="page-visual-card page-visual-phone">
+              <Image src="/blog/tradierelay-customer-quote-v2.png" alt="TradieRelay customer quote screen showing the trade business, scope and quote details" width={430} height={932} sizes="(max-width: 900px) 100vw, 360px" />
+              <figcaption><span>CUSTOMER RECORD · FAKE DATA</span><strong>A clear business identity, scope and decision—not a vague automated promise.</strong></figcaption>
+            </figure>
           </div>
         </div>
       </section>

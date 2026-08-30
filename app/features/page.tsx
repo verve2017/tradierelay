@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CtaBand } from '@/components/cta-band';
 import { ProductScreen } from '@/components/product-screen';
 import { SiteFooter } from '@/components/site-footer';
@@ -189,6 +190,25 @@ export default function FeaturesPage() {
             <p>These four features work together. Reception starts the conversation, your rules set the boundaries, qualification gathers the useful facts and the alert tells the right person what to do.</p>
           </div>
           <div className="definition-grid">{callFeatures.map((feature) => <DefinitionCard feature={feature} key={feature.id} />)}</div>
+        </div>
+      </section>
+
+      <section className="section page-visual-break page-visual-break-dark" aria-labelledby="feature-visual-heading">
+        <div className="shell">
+          <div className="page-visual-heading">
+            <div><p className="eyebrow light">FROM CALL TO DECISION</p><h2 id="feature-visual-heading">The software gives the team something they can act on.</h2></div>
+            <p>Relay does not replace the trade decision. It removes the hunting, replaying and retyping that happens before it.</p>
+          </div>
+          <div className="page-visual-grid">
+            <figure className="page-visual-card page-visual-photo">
+              <Image src="/blog/trade-team-reviewing-quote-results.webp" alt="Australian trade team reviewing customer enquiries and quote results together" width={1200} height={800} sizes="(max-width: 900px) 100vw, 50vw" />
+              <figcaption><span>THE TEAM VIEW</span><strong>Everyone works from the same job and next step.</strong></figcaption>
+            </figure>
+            <figure className="page-visual-card page-visual-screenshot">
+              <Image src="/blog/tradierelay-quote-editor-v2.png" alt="TradieRelay working quote editor with saved items, quantities and customer notes" width={1280} height={720} sizes="(max-width: 900px) 100vw, 50vw" />
+              <figcaption><span>WORKING PRODUCT · FAKE DATA</span><strong>Build the quote from the captured job without starting again.</strong></figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
