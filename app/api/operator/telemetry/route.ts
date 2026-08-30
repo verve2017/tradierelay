@@ -6,7 +6,7 @@ import { createId } from '@/lib/server/ids';
 
 export const dynamic = 'force-dynamic';
 
-const allowedTypes = new Set(['operator.tab_viewed', 'operator.audit_viewed', 'operator.growth_plan_viewed']);
+const allowedTypes = new Set(['operator.tab_viewed', 'operator.audit_viewed', 'operator.growth_plan_viewed', 'operator.sales_academy_opened']);
 
 export async function POST(request: Request) {
   const access = await requireOperatorAccess(request);
