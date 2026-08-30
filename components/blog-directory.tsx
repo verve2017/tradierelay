@@ -41,7 +41,7 @@ export function BlogDirectory({ articles }: { articles: BlogCardArticle[] }) {
         <div className="blog-search-wrap">
           <span aria-hidden="true">⌕</span>
           <label className="sr-only" htmlFor="blog-search">Search practical guides</label>
-          <input id="blog-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search missed calls, quotes, routing…" autoComplete="off" />
+          <input id="blog-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search calls, quotes, setup, cost, privacy…" autoComplete="off" />
           {query && <button type="button" onClick={() => setQuery('')} aria-label="Clear search">Clear</button>}
         </div>
         <div className="blog-filter-row" aria-label="Filter guides by topic">

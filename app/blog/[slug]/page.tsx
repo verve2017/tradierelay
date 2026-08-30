@@ -65,7 +65,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             <div className="shell blog-article-hero-grid">
               <div>
                 <nav className="blog-breadcrumb" aria-label="Breadcrumb"><a href="/blog">Resources</a><span>›</span><span>{article.category}</span></nav>
-                <p className="eyebrow">FOUNDATIONAL GUIDE · {String(article.number).padStart(2, '0')}</p>
+                <p className="eyebrow">TRADIERELAY FIELD GUIDE · {String(article.number).padStart(2, '0')}</p>
                 <h1>{article.title}</h1>
                 <p className="blog-article-deck">{article.description}</p>
                 <div className="blog-article-meta"><span>{article.readMinutes} minute read</span><span>Updated 30 August 2026</span><span>Australian context</span></div>
