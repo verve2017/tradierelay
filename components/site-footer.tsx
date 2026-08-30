@@ -17,6 +17,7 @@ export function SiteFooter() {
           <a href="/call-flow">Full call flow</a>
           <a href="/setup">Setup &amp; onboarding</a>
           <a href="/trades">Built for trades</a>
+          <a href="/blog">Practical guides</a>
         </div>
         <div>
           <strong>Confidence</strong>

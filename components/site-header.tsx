@@ -5,6 +5,7 @@ import { tradePages } from '@/lib/trades';
 const links = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/features', label: 'Features' },
+  { href: '/blog', label: 'Resources' },
   { href: '/trust', label: 'Trust' },
   { href: '/pricing', label: 'Pricing' },
 ];

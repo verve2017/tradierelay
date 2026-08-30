@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { tradePages } from '@/lib/trades';
+import { blogArticles } from '@/lib/blog';
 
 const origin = 'https://tradie-relay.verve-9089.chatgpt.site';
 
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     '',
     '/about',
+    '/blog',
     '/book',
     '/call-flow',
     '/faq',
@@ -30,6 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${origin}/trades/${trade.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.85,
+    })),
+    ...blogArticles.map((article) => ({
+      url: `${origin}/blog/${article.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     })),
   ];
 }
