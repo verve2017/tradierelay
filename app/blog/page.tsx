@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { BlogDirectory } from '@/components/blog-directory';
 import { CtaBand } from '@/components/cta-band';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -12,12 +13,22 @@ export const metadata = pageMetadata(
 );
 
 export default function BlogPage() {
-  const featured = blogArticles[0];
+  const directoryArticles = blogArticles.map((article) => ({
+    slug: article.slug,
+    number: article.number,
+    category: article.category,
+    title: article.title,
+    description: article.description,
+    readMinutes: article.readMinutes,
+    heroImage: article.heroImage,
+    heroAlt: article.heroAlt,
+    searchText: [article.title, article.description, article.directAnswer, article.category, ...article.keyPoints].join(' ').toLowerCase(),
+  }));
   const collectionSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'TradieRelay Field Guide',
-    description: 'Practical AI reception and missed-call recovery guides for Australian trade businesses.',
+    description: 'Practical AI reception, lead qualification, missed-call recovery and quote follow-up guides for Australian trade businesses.',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: blogArticles.length,
@@ -36,7 +47,7 @@ export default function BlogPage() {
               <h1>Fewer phone dramas. More useful jobs.</h1>
               <p className="blog-hub-lede">Clear answers for Australian tradies who want to stop losing good enquiries—without adding another complicated system to the day.</p>
               <div className="blog-topic-pills" aria-label="Guide topics">
-                <span>AI receptionist basics</span><span>Missed-call recovery</span><span>Call handling</span>
+                <span>AI receptionist basics</span><span>Missed-call recovery</span><span>Lead qualification</span><span>Quote follow-up</span>
               </div>
             </div>
             <Image src="/blog/trade-crew-routing.webp" alt="Australian trade team reviewing incoming job enquiries" width={1200} height={800} priority />
@@ -45,24 +56,7 @@ export default function BlogPage() {
 
         <section className="section blog-hub-section">
           <div className="shell">
-            <div className="blog-hub-heading">
-              <div><p className="eyebrow">START HERE</p><h2>Foundational guides</h2></div>
-              <p>Each guide gives the short answer first, then shows exactly how the idea works in a trade business.</p>
-            </div>
-            {featured && (
-              <a className="blog-feature-card" href={`/blog/${featured.slug}`}>
-                <Image src={featured.heroImage} alt={featured.heroAlt} width={1200} height={800} />
-                <div><span>{String(featured.number).padStart(2, '0')} · {featured.category}</span><h3>{featured.title}</h3><p>{featured.description}</p><strong>Read the guide →</strong></div>
-              </a>
-            )}
-            <div className="blog-card-grid">
-              {blogArticles.slice(1).map((article) => (
-                <a className="blog-card" href={`/blog/${article.slug}`} key={article.slug}>
-                  <Image src={article.heroImage} alt="" width={1200} height={800} />
-                  <div><span>{String(article.number).padStart(2, '0')} · {article.category}</span><h3>{article.title}</h3><p>{article.description}</p><strong>{article.readMinutes} min read →</strong></div>
-                </a>
-              ))}
-            </div>
+            <BlogDirectory articles={directoryArticles} />
           </div>
         </section>
         <CtaBand title="Want to see the phone flow with your own rules?" body="Noah will map one real call from ring to useful lead. No jargon, and no obligation." />

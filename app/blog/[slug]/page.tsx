@@ -35,6 +35,9 @@ function ProductVisual({ article }: { article: NonNullable<ReturnType<typeof get
     dashboard: { src: '/blog/tradierelay-dashboard.png', width: 1280, height: 720 },
     rules: { src: '/blog/tradierelay-call-rules.png', width: 1280, height: 720 },
     'photo-request': { src: '/blog/tradierelay-photo-request.png', width: 430, height: 932 },
+    'quote-editor': { src: '/blog/tradierelay-quote-editor-v2.png', width: 1280, height: 720 },
+    'products-prices': { src: '/blog/tradierelay-products-prices-v2.png', width: 1280, height: 720 },
+    'customer-quote': { src: '/blog/tradierelay-customer-quote-v2.png', width: 430, height: 932 },
   };
   const image = images[article.productVisual];
   return <Image className={`blog-product-shot blog-product-shot-${article.productVisual}`} src={image.src} alt="TradieRelay working product screen using fictional demo data" width={image.width} height={image.height} />;
