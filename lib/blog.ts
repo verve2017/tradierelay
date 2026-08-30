@@ -1,3 +1,5 @@
+import { completionGuides } from '@/lib/blog-guides';
+
 export type BlogSection = {
   heading: string;
   paragraphs?: string[];
@@ -8,7 +10,7 @@ export type BlogSection = {
 export type BlogArticle = {
   slug: string;
   number: number;
-  category: 'AI receptionist basics' | 'Missed-call recovery' | 'Lead qualification' | 'Quote follow-up' | 'Setup & call routing' | 'Cost, privacy & trust';
+  category: 'AI receptionist basics' | 'Missed-call recovery' | 'Lead qualification' | 'Quote follow-up' | 'Setup & call routing' | 'Cost, privacy & trust' | 'Trade call playbooks' | 'Bookings & calendars' | 'Customer communication' | 'Team & operations' | 'Revenue & measurement' | 'Safety & reliability' | 'Local growth';
   title: string;
   description: string;
   directAnswer: string;
@@ -31,7 +33,7 @@ export type BlogArticle = {
   related: string[];
 };
 
-export const blogArticles: BlogArticle[] = [
+const firstSixtyBlogArticles: BlogArticle[] = [
   {
     slug: 'what-is-an-ai-receptionist-for-tradies',
     number: 1,
@@ -1413,6 +1415,8 @@ export const blogArticles: BlogArticle[] = [
     related: ['choose-ai-receptionist-trade-business', 'what-ai-receptionist-pricing-should-include', 'ai-receptionist-cost-tradies-australia'],
   },
 ];
+
+export const blogArticles: BlogArticle[] = [...firstSixtyBlogArticles, ...completionGuides];
 
 export function getBlogArticle(slug: string) {
   return blogArticles.find((article) => article.slug === slug);

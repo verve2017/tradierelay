@@ -8,7 +8,7 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata(
   'Practical AI & Phone Guides for Tradies',
-  'Plain-English guides to AI reception, call routing, missed-call recovery, quote follow-up, pricing and privacy for Australian trade businesses.',
+  '128 plain-English guides to AI reception, missed-call recovery, bookings, customer communication, safety, local growth and quote follow-up for Australian trade businesses.',
   '/blog',
 );
 
@@ -28,7 +28,7 @@ export default function BlogPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'TradieRelay Field Guide',
-    description: 'Practical AI reception, call routing, lead qualification, missed-call recovery, quote follow-up, pricing and privacy guides for Australian trade businesses.',
+    description: '128 practical AI reception, call routing, booking, customer communication, measurement, safety and local-growth guides for Australian trade businesses.',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: blogArticles.length,
@@ -47,7 +47,7 @@ export default function BlogPage() {
               <h1>Fewer phone dramas. More useful jobs.</h1>
               <p className="blog-hub-lede">Clear answers for Australian tradies who want to stop losing good enquiries—without adding another complicated system to the day.</p>
               <div className="blog-topic-pills" aria-label="Guide topics">
-                <span>AI receptionist basics</span><span>Missed-call recovery</span><span>Lead qualification</span><span>Quote follow-up</span><span>Setup &amp; call routing</span><span>Cost, privacy &amp; trust</span>
+                <span>AI reception</span><span>Missed calls</span><span>Bookings</span><span>Customer communication</span><span>Trade playbooks</span><span>Local growth</span>
               </div>
             </div>
             <Image src="/blog/trade-crew-routing.webp" alt="Australian trade team reviewing incoming job enquiries" width={1200} height={800} priority />

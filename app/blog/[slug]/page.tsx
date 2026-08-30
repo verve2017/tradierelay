@@ -68,7 +68,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                 <p className="eyebrow">TRADIERELAY FIELD GUIDE · {String(article.number).padStart(2, '0')}</p>
                 <h1>{article.title}</h1>
                 <p className="blog-article-deck">{article.description}</p>
-                <div className="blog-article-meta"><span>{article.readMinutes} minute read</span><span>Updated 30 August 2026</span><span>Australian context</span></div>
+                <div className="blog-article-meta"><span>{article.readMinutes} minute read</span><span>TradieRelay product team</span><span>Updated 30 August 2026</span><span>Australian context</span></div>
               </div>
               <Image src={article.heroImage} alt={article.heroAlt} width={1200} height={800} priority style={{ objectPosition: article.heroPosition || 'center' }} />
             </div>
