@@ -195,7 +195,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'Who Is an AI Receptionist Best Suited To?',
     description: 'A fit guide for sole traders, small crews and growing trade businesses deciding whether AI call handling will actually help.',
     directAnswer: 'AI reception is best suited to trade businesses that receive useful calls while nobody can reliably answer, follow a reasonably repeatable intake process and are willing to define their rules. It is less useful when call volume is tiny, every enquiry needs expert judgment immediately, or nobody will act on the captured leads.',
-    readMinutes: 7, heroImage: '/blog/trade-crew-routing.webp', heroAlt: 'Small Australian trade crew reviewing calls and jobs together',
+    readMinutes: 7, heroImage: '/blog/young-founders-testing-call-flow.webp', heroAlt: 'Two young Australian founders testing an AI receptionist call flow before launch',
     secondaryImage: '/tradie-van-hero.jpg', secondaryAlt: 'Australian tradie beside a work van on the Gold Coast', secondaryCaption: 'Sole traders gain time only when captured enquiries land somewhere they already check and can act on quickly.',
     keyPoints: ['Sole traders can recover calls without answering on the tools.', 'Small crews can route job types to the right person.', 'The strongest fit has both missed demand and a clear follow-up owner.'],
     sections: [
@@ -303,7 +303,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'AI Receptionist Setup Checklist for Australian Tradies',
     description: 'A step-by-step launch checklist covering call forwarding, business rules, privacy, testing, alerts and the first two weeks.',
     directAnswer: 'A safe setup starts with one narrow call condition, an approved introduction, clear service and escalation rules, a named lead owner, tested fallback paths and visible privacy information. Test real call scenarios before launch, then review every captured lead during the first fortnight.',
-    readMinutes: 10, heroImage: '/blog/trade-crew-routing.webp', heroAlt: 'Australian trade business owners configuring a call system together',
+    readMinutes: 10, heroImage: '/blog/office-coordinator-with-electrician.webp', heroAlt: 'Experienced trade office coordinator and electrician reviewing how customer calls are handled',
     secondaryImage: '/blog/tradierelay-call-rules.png', secondaryAlt: 'TradieRelay call rules configuration screen', secondaryCaption: 'The live operating rules should be easy for the business and operator to inspect—not buried in technical code.',
     keyPoints: ['Start with missed or after-hours calls.', 'Write down what the assistant may and may not do.', 'Test the ugly cases before a real customer finds them.'],
     sections: [
@@ -435,7 +435,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'What Is Overflow Call Answering?',
     description: 'How overflow answering covers calls your tradie or office team cannot reach, without taking over every call or changing the customer-facing number.',
     directAnswer: 'Overflow call answering is backup coverage. Your normal person or team gets the first chance to answer; if the call is busy, unanswered or exceeds the available lines, the backup service answers and captures the enquiry. It suits businesses that want human answering first but do not want the next caller to reach a dead end.',
-    readMinutes: 7, heroImage: '/blog/trade-crew-routing.webp', heroAlt: 'Small Australian trade team managing several calls and jobs',
+    readMinutes: 7, heroImage: '/blog/plumbing-office-overflow-calls.webp', heroAlt: 'Australian plumbing office receptionist calmly handling overflow calls',
     secondaryImage: '/blog/tradierelay-call-rules.png', secondaryAlt: 'TradieRelay rule showing missed-call and after-hours answer mode', secondaryCaption: 'Overflow is a routing choice. It should be visible alongside no-answer, busy and after-hours rules.',
     keyPoints: ['Your normal answer path stays first.', 'Backup coverage starts only under chosen conditions.', 'Captured calls need an owner and response target.'],
     sections: [
@@ -502,7 +502,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Can a Small Trade Business Handle Several Calls at Once?',
     description: 'A simple routing design for overlapping enquiries, including priority, multiple people, overflow and one shared job record.',
     directAnswer: 'A small trade business can handle several calls by separating call answering from human decision-making. Let available staff answer normally, route overlapping calls to overflow, capture each enquiry into one shared job pipeline and alert only the person responsible for that job type or urgency. Do not forward every call to every phone.',
-    readMinutes: 8, heroImage: '/blog/trade-crew-routing.webp', heroAlt: 'Small trade team reviewing several incoming jobs',
+    readMinutes: 8, heroImage: '/blog/trade-dispatch-several-calls.webp', heroAlt: 'Small Australian trade team coordinating several incoming jobs in a workshop',
     secondaryImage: '/blog/tradierelay-dashboard.png', secondaryAlt: 'TradieRelay dashboard showing several jobs with different priorities', secondaryCaption: 'A shared pipeline shows what needs action, what is waiting and what is already booked—without asking everyone to read every message.',
     keyPoints: ['Overflow catches the second call.', 'Routing sends the job to one accountable person.', 'A shared pipeline prevents duplicate callbacks.'],
     sections: [
@@ -713,7 +713,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'What Information Does a Tradie Need Before Calling a Lead Back?',
     description: 'The minimum useful lead summary for a faster callback: who, where, what, timing, fit, access and relevant customer evidence.',
     directAnswer: 'Before calling back, a tradie usually needs the customer’s name and number, suburb or address, plain-English job description, timing, stated urgency, property or access details and any useful photos. The summary should also show why the job was routed to them and which facts are uncertain. It should be scannable in under a minute, with the full call available if needed.',
-    readMinutes: 7, heroImage: '/blog/trade-crew-routing.webp', heroAlt: 'Australian tradie reviewing a concise customer lead before calling back',
+    readMinutes: 7, heroImage: '/blog/plumber-reviewing-callback-lead.webp', heroAlt: 'Australian plumber reviewing a concise customer lead from a safely parked work van',
     secondaryImage: '/app-screens/qualified-lead.png', secondaryAlt: 'TradieRelay qualified job screen showing customer, suburb, job summary and requested times', secondaryCaption: 'The qualified-job screen puts the callback decision ahead of a long transcript.',
     keyPoints: ['Show decision-ready facts first.', 'Separate caller statements from confirmed facts.', 'Keep photos, messages and call details together.'],
     sections: [
@@ -756,7 +756,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'What Is Automated Quote Follow-Up for Tradies?',
     description: 'How a simple quote follow-up flow reminds a customer, records what happened and stops when the customer accepts, asks a question or opts out.',
     directAnswer: 'Automated quote follow-up sends a pre-approved check-in after a quote has been sent and still needs a decision. It should link back to the original quote, make accepting or asking for a change easy, record the customer’s action and stop when the quote is accepted, changed, closed or opted out. The automation follows up; the tradie remains responsible for price, scope and negotiation.',
-    readMinutes: 8, heroImage: '/blog/tradie-preparing-quote-v2.webp', heroAlt: 'Australian tradie preparing and reviewing a customer quote on a tablet',
+    readMinutes: 8, heroImage: '/blog/quote-followup-office-manager.webp', heroAlt: 'Australian plumbing office manager reviewing an approved quote and scheduled follow-up',
     secondaryImage: '/blog/tradierelay-quote-editor-v2.png', secondaryAlt: 'TradieRelay quote editor with saved products, prices and human send controls', secondaryCaption: 'The working quote editor requires the tradie to review the scope and acknowledge it before sending.',
     keyPoints: ['Start only after a human-approved quote is sent.', 'Keep every reminder tied to the same quote.', 'Stop when the customer responds or the quote is no longer active.'],
     sections: [
@@ -777,7 +777,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Soon Should a Tradie Follow Up After Sending a Quote?',
     description: 'Choose a first follow-up time based on job urgency, quote complexity, customer expectations and whether the quote has been opened.',
     directAnswer: 'For many routine trade quotes, a brief check-in about one business day after sending is a sensible starting rule. Use a shorter human callback when the job is genuinely urgent or the customer asked for a decision time, and allow longer for complex projects that need review by several people. State the next step when sending the quote so the follow-up is expected rather than surprising.',
-    readMinutes: 7, heroImage: '/blog/customer-reviewing-quote-v2.webp', heroAlt: 'Australian homeowner reviewing a trade quote on a mobile phone',
+    readMinutes: 7, heroImage: '/blog/couple-reviewing-trade-quote.webp', heroAlt: 'Australian homeowner couple calmly reviewing a trade quote together on a tablet',
     secondaryImage: '/blog/tradierelay-customer-quote-v2.png', secondaryAlt: 'Mobile customer quote showing scope, total, acceptance and change request', secondaryCaption: 'A clear mobile quote reduces the need for a vague “did you get it?” follow-up.',
     keyPoints: ['One business day is a useful starting point, not a universal law.', 'Match timing to the customer’s decision process.', 'Tell the customer when and how you will check in.'],
     sections: [
@@ -798,7 +798,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Many Times Should You Follow Up a Trade Quote?',
     description: 'How to choose a limited follow-up sequence that helps customers decide without turning an active quote into unwanted chasing.',
     directAnswer: 'There is no single right number. Start with one helpful follow-up, then use a second only where the quote is still active, the job value and decision cycle justify it, and the customer has not responded or opted out. Keep the sequence short, stop on any clear outcome and move stale quotes to a human review or closed state instead of messaging indefinitely.',
-    readMinutes: 7, heroImage: '/blog/tradie-preparing-quote-v2.webp', heroAlt: 'Australian trade business owner reviewing open customer quotes',
+    readMinutes: 7, heroImage: '/blog/electrician-reviewing-open-quotes.webp', heroAlt: 'Australian electrician business owner reviewing a short list of open customer quotes',
     secondaryImage: '/blog/tradierelay-quote-editor-v2.png', secondaryAlt: 'TradieRelay quote editor used to review scope and price before send', secondaryCaption: 'A good follow-up sequence begins with a clear, accurate quote—not with more reminders.',
     keyPoints: ['Begin with one useful check-in.', 'Add another only for a clear business reason.', 'Never create an endless chase sequence.'],
     sections: [
@@ -819,7 +819,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'What Should a Quote Follow-Up Text Message Say?',
     description: 'A plain-English trade quote follow-up template that identifies the business, links to the quote and offers clear next actions.',
     directAnswer: 'A useful quote follow-up text names the business and customer, refers to the specific quote, provides the same secure link and offers a simple action: review, accept or ask for a change. Example: “Hi Sarah, it’s GC Handyman. Just checking you received the fence repair quote. You can review it here: [link]. Reply here if you have a question or want a change. Reply STOP to opt out.”',
-    readMinutes: 8, heroImage: '/blog/customer-reviewing-quote-v2.webp', heroAlt: 'Australian homeowner reading a clear trade quote follow-up on a phone',
+    readMinutes: 8, heroImage: '/blog/homeowner-reading-quote-message.webp', heroAlt: 'Australian homeowner reading a helpful trade quote follow-up message on her phone',
     secondaryImage: '/blog/tradierelay-customer-quote-v2.png', secondaryAlt: 'TradieRelay customer quote screen opened from the follow-up link', secondaryCaption: 'The message should return the customer to the exact quote, where the scope and actions are clear.',
     keyPoints: ['Identify the business and quote.', 'Give one secure link and clear choices.', 'Keep operational follow-up separate from unrelated marketing.'],
     sections: [
@@ -841,7 +841,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Do You Follow Up a Quote Without Sounding Pushy?',
     description: 'Make the follow-up helpful by reducing uncertainty, offering an easy question path and giving the customer control over the next step.',
     directAnswer: 'Follow up without pressure by referring to the quote the customer requested, checking that it arrived, offering to clarify or change it and making “not ready” an acceptable response. Use a calm timeframe, avoid fake urgency and stop after a limited sequence. The message should make the decision easier, not make the customer feel chased.',
-    readMinutes: 7, heroImage: '/blog/customer-reviewing-quote-v2.webp', heroAlt: 'Australian homeowner calmly reviewing a trade quote at home',
+    readMinutes: 7, heroImage: '/blog/hvac-tradie-followup-call.webp', heroAlt: 'Australian air-conditioning tradie making a friendly follow-up call from a safely parked ute',
     secondaryImage: '/blog/tradie-preparing-quote-v2.webp', secondaryAlt: 'Australian tradie reviewing an accurate quote before customer follow-up', secondaryCaption: 'Confidence starts with a quote that the tradie has checked—not with a clever reminder.',
     keyPoints: ['Ask whether help is needed.', 'Make a question or change easy.', 'Use real availability and real deadlines only.'],
     sections: [
@@ -862,7 +862,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'When Should Automated Quote Follow-Up Stop?',
     description: 'The essential stop rules that prevent reminders after acceptance, questions, closure, expiry or an SMS opt-out.',
     directAnswer: 'Automated quote follow-up should stop as soon as the customer accepts, asks a question or requests a change, declines, opts out, or the quote is withdrawn, expired or closed. It should also stop when the owner pauses the sequence. Check the live quote state immediately before every message so a reminder is not sent from an out-of-date queue.',
-    readMinutes: 7, heroImage: '/blog/customer-reviewing-quote-v2.webp', heroAlt: 'Customer taking action on a trade quote from a mobile phone',
+    readMinutes: 7, heroImage: '/blog/landscaper-closing-quote.webp', heroAlt: 'Australian landscaping business owner closing a resolved customer quote on a tablet',
     secondaryImage: '/blog/tradierelay-customer-quote-v2.png', secondaryAlt: 'TradieRelay mobile quote with accept and request a change actions', secondaryCaption: 'Acceptance and change requests are clear customer actions that should close the automatic follow-up loop.',
     keyPoints: ['Every sequence needs explicit stop rules.', 'Check the current quote state at send time.', 'Customer response hands control back to a person.'],
     sections: [
@@ -883,7 +883,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Can Tradies Track Whether a Customer Viewed a Quote?',
     description: 'A plain-English explanation of secure quote links, viewed status and the limits of what an opened quote tells you.',
     directAnswer: 'Send the customer a unique secure link to the current quote and record a viewed status when that valid quote page opens. Show the viewed state and time to the tradie, but do not treat an open as acceptance or proof that every line was read. TradieRelay records the quote-page event; it does not claim to watch the customer or read their intent.',
-    readMinutes: 7, heroImage: '/blog/customer-reviewing-quote-v2.webp', heroAlt: 'Australian customer opening a trade quote using a secure mobile link',
+    readMinutes: 7, heroImage: '/blog/customer-opening-quote-overhead.webp', heroAlt: 'Overhead view of an Australian customer opening a trade quote beside renovation plans',
     secondaryImage: '/blog/tradierelay-customer-quote-v2.png', secondaryAlt: 'Secure mobile TradieRelay quote page viewed by a customer', secondaryCaption: 'A valid quote-page open can update the status from sent to viewed while leaving acceptance as a separate action.',
     keyPoints: ['Use one secure link for the current quote.', 'Record viewed as a delivery signal, not a buying signal.', 'Keep acceptance and change requests separate.'],
     sections: [
@@ -904,7 +904,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Should Tradies Handle Quote Questions and Change Requests?',
     description: 'Turn a customer question or requested scope change into a clear owner task, revised quote and new approval loop.',
     directAnswer: 'Give the customer an obvious way to ask a question or request a change from the quote. When they do, stop generic follow-up, attach the request to the job and alert the responsible tradie. A person reviews the scope, updates products, prices, assumptions or timing, then approves and sends a revised quote. Never let the AI negotiate or silently edit the offer.',
-    readMinutes: 8, heroImage: '/blog/tradie-preparing-quote-v2.webp', heroAlt: 'Australian tradie reviewing a customer quote change on a tablet',
+    readMinutes: 8, heroImage: '/blog/painter-discussing-scope-change.webp', heroAlt: 'Australian painter discussing a customer-requested scope change inside a renovation',
     secondaryImage: '/blog/tradierelay-quote-editor-v2.png', secondaryAlt: 'TradieRelay quote editor with editable line items and send approval', secondaryCaption: 'The tradie can adjust line items and price, then deliberately review the new quote before sending.',
     keyPoints: ['Stop generic reminders when a question arrives.', 'Keep the request with the job and quote version.', 'Require human review before any revised quote is sent.'],
     sections: [
@@ -925,7 +925,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Do Saved Products and Prices Speed Up Trade Quotes?',
     description: 'How a tradie-managed product library reduces retyping while keeping quantities, descriptions, prices and final approval under human control.',
     directAnswer: 'Saved products and prices let a tradie add common labour, materials or service items to a quote without retyping them. The saved description and price are copied into the quote, where the tradie can change the quantity, wording or amount for that job. The owner can add, edit and delete catalogue items, and must still review the complete quote before sending.',
-    readMinutes: 8, heroImage: '/blog/tradie-preparing-quote-v2.webp', heroAlt: 'Australian trade business owner preparing a quote from saved service items',
+    readMinutes: 8, heroImage: '/blog/plumber-updating-products-prices.webp', heroAlt: 'Australian plumbing business owner updating saved products and prices in a parts storeroom',
     secondaryImage: '/blog/tradierelay-products-prices-v2.png', secondaryAlt: 'TradieRelay Products and Prices screen with add, edit and delete controls', secondaryCaption: 'This is the working tradie-managed catalogue: owners can add, edit and delete their own products and prices.',
     keyPoints: ['Owners control their own catalogue.', 'Saved values are copied, not locked.', 'Every customer quote still needs a human check.'],
     sections: [
@@ -946,7 +946,7 @@ export const blogArticles: BlogArticle[] = [
     title: 'How Do You Measure Whether Quote Follow-Up Is Winning More Jobs?',
     description: 'A simple measurement plan using sent, viewed, accepted, changed and opted-out quote events—without inventing attribution.',
     directAnswer: 'Track a small funnel by job type: quotes sent, quotes viewed, questions or changes, quotes accepted, time to decision, value accepted and opt-outs. Compare similar periods or groups before and after a follow-up rule changes. Do not count a viewed quote as a win or assume every acceptance was caused by the reminder; use the data to judge whether follow-up helps customers act without increasing complaints.',
-    readMinutes: 9, heroImage: '/blog/tradie-preparing-quote-v2.webp', heroAlt: 'Australian trade business owner reviewing quote outcomes on a tablet',
+    readMinutes: 9, heroImage: '/blog/trade-team-reviewing-quote-results.webp', heroAlt: 'Diverse Australian trade team reviewing quote results together in their workshop',
     secondaryImage: '/blog/tradierelay-customer-quote-v2.png', secondaryAlt: 'Customer quote screen producing viewed, accepted and change-request events', secondaryCaption: 'Useful measurement begins with clear customer actions recorded against one quote.',
     keyPoints: ['Measure the whole quote funnel.', 'Compare like jobs and time periods.', 'Balance wins with opt-outs, complaints and owner workload.'],
     sections: [
